@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <script>
+    var mainHand = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var arm = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var chest = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var bag = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var boot = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var glove = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var ring = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var amulet = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var offhand = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var other = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var buff = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    var character = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 159, HPReg: 2.8, MP: 120, MPReg: 3.0, Def: 87, Block: 0, MinDmg: 3, MaxDmg: 3, Crit: 6.0, Haste: 0.3, MoveSpd: 97, ItemFind: 3, BagSlot: 15 };
+    const baseCharacter = { Str: 10, Stam: 12, Dex: 10, Int: 10, Wis: 10, Luck: 5, HP: 159, HPReg: 2.8, MP: 120, MPReg: 3.0, Def: 87, Block: 0, MinDmg: 3, MaxDmg: 3, Crit: 6.0, Haste: 0.3, MoveSpd: 97, ItemFind: 3, BagSlot: 15 };
+    var appliedStats = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0, };
+    var characterInfo = { charClass: "warrior", Level: 1, Fame: 0, statsPoints: 3, StatsSpent: 0, Elixir: true, eHP: 0, eDPS: 0, DmgReduce: 0 };
+
+// How Gear upgrades
+// HP: +3
+// MP: +3
+// Defense: +5
+// Block: +0.5%
+// Min Dmg: +1
+// Max Dmg: +1
+// Critical: +0.5%
+// Haste: +0.5%
+// Bag slots: +1
+// Luck: +2 (2pts = 1% IF)
+// Dexterity: +2
+// Wisdom: +2
+// Intelligence: +2
+// Strength: +2
+// Stamina: +2
+
+    //this.id,'mainHandStrStat',mainHand,'Str'
+    function displayGearStatInput(checkbox, inputBoxElement, gearToUpdate, statToUpdate) {
+      var checkBox = document.getElementById(checkbox);
+      var inputElement = document.getElementById(inputBoxElement);
+      var inputValid = Boolean(parseInt(inputElement.value));
+      if (checkBox.checked == true) {
+        inputElement.style.display = "inline-block";
+        inputElement.style.width = "50px";
+        gearToUpdate[statToUpdate] = parseInt(inputElement.value) || 0;
+        updateCharacterSheet();
+
+      } else {
+
+        gearToUpdate[statToUpdate] = 0;
+        inputElement.style.display = "none";
+        updateCharacterSheet();
+      }
+    }
+
+    function updateBase(id, addtostat, elementValue) {
+
+      var left = parseInt(characterInfo['StatsSpent']);
+      var total = parseInt(characterInfo['statsPoints']);
+      var value = document.getElementById(elementValue).value;
+      if (addtostat) {
+        if (left != total) {
+          appliedStats[id] = parseInt(appliedStats[id]) + 1;
+          switch(id) {
+            case 'Str': 
+            appliedStats['HP'] += 1;
+            appliedStats['HPReg'] += 0.05;
+            if(characterInfo.charClass == 'warrior'){
+              appliedStats['MaxDmg'] += 0.3;
+              appliedStats['MinDmg'] += 0.3;
+            }
+            break;
+
+            case 'Stam': 
+            appliedStats['HP'] += 4;
+            appliedStats['Def'] += 1;
+            break;
+
+            case 'Dex': 
+            appliedStats['Crit'] += 0.05;
+            if(characterInfo.charClass == 'archer'){
+              appliedStats['MaxDmg'] += 0.4;
+              appliedStats['MinDmg'] += 0.4;
+            }
+            break;
+
+            case 'Int': 
+            appliedStats['MP'] += 1;
+            appliedStats['Crit'] += 0.04;
+            if(characterInfo.charClass == 'mage'){
+              appliedStats['MaxDmg'] += 0.4;
+              appliedStats['MinDmg'] += 0.4;
+            }
+            break;
+
+            case 'Wis': 
+            appliedStats['MP'] += 1;
+            appliedStats['Haste'] += 0.04;
+            if(characterInfo.charClass == 'shaman'){
+              appliedStats['MaxDmg'] += 0.4;
+              appliedStats['MinDmg'] += 0.4;
+            }
+            break;
+
+            case 'Luck': 
+            appliedStats['ItemFind'] += 0.5;
+            appliedStats['Crit'] += 0.02;
+            break;
+
+          }
+          characterInfo['StatsSpent'] += 1;
+        }
+      }
+      else if (left != 0 & baseCharacter[id] != value) {
+        appliedStats[id] = parseInt(appliedStats[id]) - 1;
+        switch(id) {
+            case 'Str': 
+            appliedStats['HP'] -= 1;
+            appliedStats['HPReg'] -= 0.05;
+            if(characterInfo.charClass == 'warrior'){
+              appliedStats['MaxDmg'] -= 0.3;
+              appliedStats['MinDmg'] -= 0.3;
+            }
+            break;
+
+            case 'Stam': 
+            appliedStats['HP'] -= 4;
+            appliedStats['Def'] -= 1;
+            break;
+
+            case 'Dex': 
+            appliedStats['Crit'] -= 0.05;
+            if(characterInfo.charClass == 'archer'){
+              appliedStats['MaxDmg'] -= 0.4;
+              appliedStats['MinDmg'] -= 0.4;
+            }
+            break;
+
+            case 'Int': 
+            appliedStats['MP'] -= 1;
+            appliedStats['Crit'] -= 0.04;
+            if(characterInfo.charClass == 'mage'){
+              appliedStats['MaxDmg'] -= 0.4;
+              appliedStats['MinDmg'] -= 0.4;
+            }
+            break;
+
+            case 'Wis': 
+            appliedStats['MP'] -= 1;
+            appliedStats['Haste'] -= 0.04;
+            if(characterInfo.charClass == 'shaman'){
+              appliedStats['MaxDmg'] -= 0.4;
+              appliedStats['MinDmg'] -= 0.4;
+            }
+            break;
+
+            case 'Luck': 
+            appliedStats['ItemFind'] -= 0.5;
+            appliedStats['Crit'] -= 0.02;
+            break;
+
+          }
+        characterInfo['StatsSpent'] -= 1;
+      }
+ 
+      updateCharacterSheet();
+    }
+
+
+
+    function updateItem(itemToUpdate, elementValue, statToUpdate) {
+      var value = parseInt(document.getElementById(elementValue).value);
+      itemToUpdate[statToUpdate] = value;
+     
+      updateCharacterSheet();
+    }
+
+    function updateClass(elementValue) {
+      var value = document.getElementById(elementValue);
+      var audio = new Audio('low.mp3');
+
+      var selection = value.value;
+      characterInfo['charClass'] = selection;
+      if(selection == "mage"){
+        document.getElementById("charsheetclass").style.backgroundColor = "dodgerblue";
+        audio = new Audio('Mage.mp3');
+      }
+      if(selection == "warrior"){
+        document.getElementById("charsheetclass").style.backgroundColor = "#f0756a";
+      }
+      if(selection == "archer"){
+        document.getElementById("charsheetclass").style.backgroundColor = "#34a853";
+      }
+      if(selection == "shaman"){
+        document.getElementById("charsheetclass").style.backgroundColor = "rebeccapurple";
+        
+      }
+      audio.play();
+      updateCharacterSheet();
+     
+    }
+
+
+    function updateElixir() {
+
+      if (document.getElementById("elixirbox").checked) {
+        appliedStats['BagSlot'] = 5;
+        characterInfo['Elixir'] = true;
+      } else {
+        appliedStats['BagSlot'] = 0;
+        characterInfo['Elixir'] = false;
+      }
+      updateCharacterSheet();
+    }
+
+
+
+    function calculateStatPoints() {
+      characterInfo['statsPoints'] = characterInfo['Level'] * 3;
+      var left = parseInt(characterInfo['StatsSpent']);
+      var total = parseInt(characterInfo['statsPoints']);
+
+      if (left == total) {
+        var elems = document.getElementsByClassName("statincreasebtn");
+        for (var i = 0; i < elems.length; i++) {
+          elems[i].disabled = true;
+        } }
+        else {
+          var elems = document.getElementsByClassName("statincreasebtn");
+          for (var i = 0; i < elems.length; i++) {
+            elems[i].disabled = false;
+          }
+        }     
+    }
+
+    function calculateEPDS(){
+      var min = parseInt(character.MinDmg) ? parseInt(character.MinDmg) : 0;
+      var max = parseInt(character.MaxDmg) ? parseInt(character.MaxDmg) : 0;
+      var crit = parseInt(character.Crit) ? parseInt(character.Crit) : 0;
+      var haste = parseInt(character.Haste) ? parseInt(character.Haste) : 0;
+      var eDPS = ((min+max)/2) * (1+crit/200) * (1+haste/100);
+      characterInfo['eDPS'] = eDPS;
+    }
+
+   
+
+    function calculateEHP(){
+      var hp = parseInt(character['HP']) ? parseInt(character['HP']) : 0 ;
+      var def = parseInt(character.Def) ? parseInt(character.Def) : 0 ;
+      var block = parseInt(character.Block) ? parseInt(character.Block) : 0 ;
+      var defcalc = (1- 0.9 * (1 - Math.exp(-def * 0.0025)));
+      var blockcalc = defcalc * (1- (block * 0.8) /100);
+      var eHP = (hp) / blockcalc;
+       //=ROUND(C16/((1-0.9*(1-EXP(-C20 * 0.0025)))*(1-((C21 * 0.8)/100))),2) Math.pow(base, exponent) Math.exp(x)
+
+       //watch HP 
+      characterInfo['eHP'] = eHP;
+    }
+
+    function calculateDmgReduce(){
+      var def = parseInt(character['Def']) ? parseInt(character['Def']) : 0;
+      var dmgReduce = (1 - Math.exp(-def * 0.0025))* 0.9;
+     characterInfo['DmgReduce'] = dmgReduce;
+    }
+
+    function calulateCharacterStats() {
+    
+     calculateStatPoints();
+     calculateEPDS();
+     calculateEHP();
+     calculateDmgReduce();
+      
+    }
+
+
+
+    function applyToCharacter(object/*,..*/) {
+      var temp = Object.assign({}, baseCharacter);
+      for (var i = 1; i < arguments.length; i++) {
+        for (var prop in arguments[i]) {
+          if (object.hasOwnProperty(prop)) {
+            temp[prop] = temp[prop] + arguments[i][prop];
+          }
+        }
+      }
+      character = temp;
+    }
+
+    function updateCharacterSheet() {
+
+      
+      applyToCharacter(character, mainHand, arm, chest, bag, boot, glove, ring, amulet, offhand, other, buff, appliedStats);
+      calulateCharacterStats();
+      // Update all fields displaying character fields      
+      document.getElementById('charsheetstam').value = character.Stam;
+      document.getElementById('charsheetstr').value = character.Str;
+      document.getElementById('charsheetdex').value = character.Dex;
+      document.getElementById('charsheetint').value = character.Int;
+      document.getElementById('charsheetwisdom').value = character.Wis;
+      document.getElementById('charsheetluck').value = character.Luck;
+
+      document.getElementById('charsheethp').value = character.HP;
+      document.getElementById('charsheethpreg').value = character.HPReg;
+      document.getElementById('charsheetmp').value = character.MP;
+      document.getElementById('charsheetmpreg').value = character.MPReg;
+      document.getElementById('charsheetdefense').value = character.Def;
+      document.getElementById('charsheetblock').value = character.Block;
+      document.getElementById('charsheetmin').value = character.MinDmg;
+      document.getElementById('charsheetmax').value = character.MaxDmg;
+      document.getElementById('charsheetcrit').value = character.Crit;
+      document.getElementById('charsheethaste').value = character.Haste;
+      document.getElementById('charsheetmove').value = character.MoveSpd;
+      document.getElementById('charsheetbag').value = character.BagSlot;
+      document.getElementById('charsheetitemfind').value = character.ItemFind;
+
+      document.getElementById('charsheetdmgreduce').value = characterInfo.DmgReduce;
+      document.getElementById('charsheetehp').value = characterInfo.eHP;
+      document.getElementById('charsheetedps').value = characterInfo.eDPS;
+      document.getElementById('charsheetclass').value = characterInfo.charClass;
+      document.getElementById('charsheetlevel').value = characterInfo.Level;
+      document.getElementById('charsheetfame').value = characterInfo.Fame;
+      document.getElementById('charsheetstats').value = characterInfo.statsPoints - characterInfo.StatsSpent;
+     
+      var audio = new Audio('equip.mp3').play();
+     
+      console.log("Character: \n" + JSON.stringify(character) + "\n\n Info: " + JSON.stringify(characterInfo) + "\n\n applied: " + JSON.stringify(appliedStats));
+      // localStorage.setItem("save", JSON.stringify(save));
+      //var save = {character1: character, maingear: mainHand,etc..}
+      // var savegame = JSON.parse(localStorage.getItem("save"));
+      //https://www.freecodecamp.org/news/learning-javascript-by-making-a-game-4aca51ad9030/
+    }
+
+
+
+  </script>
+  <style>
+
+    html{
+      background-color: #1e1e1e;
+    }
+    body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-33 {
+  -ms-flex: 33%;
+  flex: 33%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-33,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #23272A;
+  padding: 5px 20px 15px 20px;
+  color: white;
+}
+
+input[type=text] {
+  width: 50%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  float: right;
+}
+
+input[type=number] {
+  width: 30%;
+ /*margin-bottom: 10px;*/
+  padding: 5px;
+  border: 1px solid grey;
+    background-color: #343434;
+    color: white;
+    text-align: center;
+height: 26px;
+  
+}
+
+input[type=number]:focus {
+  outline: 1px solid gray;
+}
+
+select {
+  width: 30%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid grey;
+    background-color: #343434;
+    color: white;
+    text-align: center;
+}
+
+option:not(:checked){
+  background-color: #343434;
+}
+
+.charsheetdisabled {
+  width: 50px; 
+  color: yellow !important; 
+}
+
+input:disabled {
+  border: none;
+  background-color: transparent;
+}
+
+label {
+  /*margin-bottom: 10px;*/
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  
+  margin-bottom: 10px;
+  border: none;
+
+  cursor: pointer;
+ 
+}
+
+.btn:disabled {
+  background-color: transparent;
+}
+
+.btn:disabled:hover {
+  background-color: #454545;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+
+
+#ck-button {
+    margin:4px;
+    background-color:transparentF;
+    border-radius:2px;   
+    overflow:auto;
+    float:left;
+    user-select: none
+}
+
+#ck-button:hover {
+    margin:4px;
+    overflow:auto;
+    float:left;
+    background-color: lightslategray;
+    
+}
+
+#ck-button label {
+    float:left;
+  
+}
+
+#ck-button label span {
+    text-align:center;
+    padding:3px 2px;
+    display:inline-block;
+
+}
+
+#ck-button label {
+    position: relative;
+        display: inline-block;
+        overflow: hidden;
+        
+    }
+
+#ck-button label input {
+    position:absolute;
+    top:-20px;
+}
+
+#ck-button input:checked + span {
+    background-color:#4285f4;
+    color:#fff;
+
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 250px;
+  background-color: rgba(105,105,105,0.85);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.fas[data-count]{
+    position:relative;
+}
+.fas[data-count]:after{
+    position: absolute;
+   
+    top: -.75em;
+    content: attr(data-count);
+    padding: .5em;
+    border-radius: 100%;
+    line-height: .9em;
+    color: lightgrey;
+   
+    text-align: center;
+    min-width: 10px;
+    font: bold .4em sans-serif;
+}
+
+</style>
+</head>
+
+<body onload="updateCharacterSheet()">
+  <div class="row">
+    <div class="col-75">
+      <div class="container">
+
+        <!-- <button class="  " onclick="updateCharacterSheet()"></button> -->
+        <div class="row">
+
+          <div class="col-50">
+
+            <h3>Character Sheet Calculator</h3>
+            <div style="display: flex"><label for="fname" style="flex: 1">Name:</label><input type=text disabled
+                placeholder="OhG & Guild"></input></div>
+
+            <div style="display: flex"><i class="fas fa-mask"></i>&nbsp;<label for="fname" style="flex: 1;">Class:</label>
+              <select name="classSelect" id="charsheetclass" onchange="updateClass(this.id)">
+                <option value="warrior">Warrior</option>
+                <option value="shaman">Shaman</option>
+                <option value="archer">Archer</option>
+                <option value="mage">Mage</option>
+              </select>
+            </div>
+            <div style="display: flex"><i class="fas fa-star"></i>&nbsp;<label for="fname" style="flex: 1">Level</label><input
+                type=number max="45" min="0" id="charsheetlevel" onchange="updateItem(characterInfo, this.id,'Level')"></input></div>
+            <div style="display: flex"><i class="fas fa-crown"></i>&nbsp;<label for="fname" style="flex: 1; color: #ea00ff;">Fame
+                Rank</label><input type=number id="charsheetfame" onchange="updateItem(characterInfo, this.id,'Fame')"></input></div>
+            <div style="display: flex"><i class="fas fa-arrow-circle-up"></i>&nbsp;<label for="fname" style="flex: 1">Stats
+                Left</label><input type=number id="charsheetstats" disabled></input></div>
+            <div style="display: flex"><i class="fas fa-star"></i>&nbsp;<label for="fname" style="flex: 1">Elixir</label><input
+                type="checkbox"  id="elixirbox" onclick="updateElixir()"></div>
+
+
+          </div>
+
+          <div class="col-50">
+            <h3>Base</h3>     
+
+            <div style="display: flex"><i class="fas fa-dumbbell"></i>&nbsp;
+              <label for="fname" style="flex: 1; "> <div class="tooltip">Strength
+                <span class="tooltiptext">Strength is used to promote HP (+1) and HP Reg (+0.05) for your character. This increases Warrior's Min and Max damage.</span>
+              </div></label>
+              
+              <input type=number id="charsheetstr" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseStr" onclick="updateBase('Str',false ,'charsheetstr')"><i class="fas fa-arrow-down"></i></button>
+              <button class="btn statincreasebtn" onclick="updateBase('Str',true ,'charsheetstr')"><i class="fas fa-arrow-up"></i></button>
+            </div>
+
+            <div style="display: flex"><i class="fas fa-heartbeat"></i>&nbsp;
+              <label for="fname" style="flex: 1; "> <div class="tooltip">Stamina
+                <span class="tooltiptext">Stamina is used to promote HP (+4) and Defense (+1) for your character.</span>
+              </div></label>
+              <input type=number id="charsheetstam" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseStam" onclick="updateBase('Stam',false,'charsheetstam')"><i
+                  class="fas fa-arrow-down"></i></button>
+              <button class="btn statincreasebtn" onclick="updateBase('Stam',true,'charsheetstam')"><i class="fas fa-arrow-up"></i></button>
+            </div>
+
+            <div style="display: flex"><i class="fas fa-bolt"></i>&nbsp;
+              <label for="fname" style="flex: 1; "> <div class="tooltip">Dexterity
+                <span class="tooltiptext">Dexterity is used to promote Critical (+0.05) for your character. This increases Archer's Min and Max damage.</span>
+              </div></label>
+              <input type=number id="charsheetdex" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseDex" onclick="updateBase('Dex',false ,'charsheetdex')"><i class="fas fa-arrow-down"></i></button>
+              <button class="btn statincreasebtn"  onclick="updateBase('Dex',true ,'charsheetdex')"><i class="fas fa-arrow-up"></i></button>
+            </div>
+
+            <div style="display: flex"><i class="fas fa-dice-d20"></i>&nbsp;
+              <label for="fname" style="flex: 1; "> <div class="tooltip">Intelligence
+                <span class="tooltiptext">Intelligence is used to promote MP (+1) and Critical (+0.04) for your character. This increases Mage's Min and Max damage.</span>
+              </div></label>
+              <input type=number id="charsheetint" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseInt" onclick="updateBase('Int',false ,'charsheetint')"><i class="fas fa-arrow-down"></i></button>
+              <button class="btn statincreasebtn"  onclick="updateBase('Int',true ,'charsheetint')"><i class="fas fa-arrow-up"></i></button>
+            </div>
+
+            <div style="display: flex"><i class="fas fa-brain"></i>&nbsp;
+              <label for="fname" style="flex: 1; "> <div class="tooltip">Wisdom
+                <span class="tooltiptext">Wisdom is used to promote MP (+1) and Haste (+0.03) for your character. This increases Shaman's Min and Max damage.</span>
+              </div></label>
+              <input type=number id="charsheetwisdom" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseInt" onclick="updateBase('Wis',false ,'charsheetwisdom')"><i
+                  class="fas fa-arrow-down"></i></button>
+              <button class="btn statincreasebtn" onclick="updateBase('Wis',true ,'charsheetwisdom')"><i
+                  class="fas fa-arrow-up"></i></button>
+            </div>
+
+            <div style="display: flex"><i class="fas fa-dice-three"></i>&nbsp;
+              <label for="fname" style="flex: 1; "> <div class="tooltip">Luck
+                <span class="tooltiptext">Luck is used to promote Critical (+0.02) and Item Find (+0.5) for your character.</span>
+              </div></label>
+              <input type=number id="charsheetluck" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseInt" onclick="updateBase('Luck',false ,'charsheetluck')"><i
+                  class="fas fa-arrow-down"></i></button>
+              <button class="btn statincreasebtn" value="1" onclick="updateBase('Luck',true ,'charsheetluck')"><i class="fas fa-arrow-up"></i></button>
+            </div>
+
+
+
+          </div>
+
+        </div>
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-33">
+            <div style="display: flex"><label for="fname" style="flex: 1; "> <div class="tooltip">HP
+              <span class="tooltiptext">Overall Health Points of the character.</span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheethp" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1; "> <div class="tooltip">HP Reg
+              <span class="tooltiptext">Amount of Health Points the character recovers per 5 seconds.</span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheethpreg" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1; "> <div class="tooltip">MP
+              <span class="tooltiptext">Overall Mana Points of the character.</span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetmp" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">MP Reg
+              <span class="tooltiptext"> Amount of Mana Points the character recovers per 5 seconds.</span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetmpreg" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Defense
+              <span class="tooltiptext"> Reduces damage taken by % amount. </span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetdefense" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Block
+              <span class="tooltiptext"> Chance of blocking an attack, negates the attack's damage by 80%. Facing an enemy promotes better percentage. </span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetblock" disabled></input></div>
+
+          </div>
+          <div class="col-33">
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Min Dmg
+              <span class="tooltiptext"> Minimum damage an attack will do (without taking critical and the target's defense into consideration)</span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetmin" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Max Dmg
+              <span class="tooltiptext"> Maximum damage an attack will do (without taking critical and the target's defense into consideration)</span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetmax" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Critical
+              <span class="tooltiptext"> % chance of doing a critical hit and doing high damage while ignoring enemy armor. </span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetcrit" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Haste
+              <span class="tooltiptext">Increases cooldowns, casting times, and interval rate of buffs that deal damage or heal. Does not display. </span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheethaste" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Dmg Reduce
+              <span class="tooltiptext">Damage reduction % from blocking an attack </span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetdmgreduce" disabled></input></div>
+
+          </div>
+          <div class="col-33">
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Move Speed
+              <span class="tooltiptext">How fast your character moves </span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetmove" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Bag Slots
+              <span class="tooltiptext">Number of bag slots you have</span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetbag" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Item Find
+              <span class="tooltiptext"> Increases the number of items and gold dropped from monsters. Fame and luck increase this.</span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetitemfind" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">eHP
+              <span class="tooltiptext"> Effective HP calculates how much damage you can take with HP, Block, Reg, etc combined </span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetehp" disabled></input></div>
+            <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">eDPS
+              <span class="tooltiptext"> Effective Damage Per Seconds calculates how much damage you can deal with Min, Max, Critical, etc combined </span>
+            </div></label><input type=number class="charsheetdisabled"
+                id="charsheetedps" disabled></input></div>
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Main Hand <br><br><i
+              class="fas fa-fist-raised" data-count="2" style="font-size: 40px; color: grey"></i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandStrbox" value="1" onclick="displayGearStatInput(this.id,'mainHandStrStat',mainHand,'Str')"><span>Strength</span>
+              </label>
+              <input id="mainHandStrStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandStambox" value="1" onclick="displayGearStatInput(this.id,'mainHandStamStat',mainHand,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="mainHandStamStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandDexbox" value="1" onclick="displayGearStatInput(this.id,'mainHandDexStat',mainHand,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="mainHandDexStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandIntbox" value="1" onclick="displayGearStatInput(this.id,'mainHandIntStat',mainHand,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="mainHandIntStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandWisbox" value="1" onclick="displayGearStatInput(this.id,'mainHandWisStat',mainHand,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="mainHandWisStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandLuckbox" value="1" onclick="displayGearStatInput(this.id,'mainHandLuckStat',mainHand,'Luck')"><span>Luck</span>
+              </label>
+              <input id="mainHandLuckStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandHPbox" value="1" onclick="displayGearStatInput(this.id,'mainHandHPStat',mainHand,'HP')"><span>HP</span>
+              </label>
+              <input id="mainHandHPStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandHPRegbox" value="1" onclick="displayGearStatInput(this.id,'mainHandHPRegStat',mainHand,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="mainHandHPRegStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMPbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMPStat',mainHand,'MP')"><span>MP</span>
+              </label>
+              <input id="mainHandMPStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMPRegbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMPRegStat',mainHand,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="mainHandMPRegStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandDefbox" value="1" onclick="displayGearStatInput(this.id,'mainHandDefStat',mainHand,'Def')"><span>Defense</span>
+              </label>
+              <input id="mainHandDefStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandBlockbox" value="1" onclick="displayGearStatInput(this.id,'mainHandBlockStat',mainHand,'Block')"><span>Block</span>
+              </label>
+              <input id="mainHandBlockStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMinbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMinStat',mainHand,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="mainHandMinStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMaxbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMaxStat',mainHand,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="mainHandMaxStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandCritbox" value="1" onclick="displayGearStatInput(this.id,'mainHandCritStat',mainHand,'Crit')"><span>Critical</span>
+              </label>
+              <input id="mainHandCritStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandHastebox" value="1" onclick="displayGearStatInput(this.id,'mainHandHasteStat',mainHand,'Haste')"><span>Haste</span>
+              </label>
+              <input id="mainHandHasteStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMoveSpdStat',mainHand,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="mainHandMoveSpdStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandItemFindbox" value="1" onclick="displayGearStatInput(this.id,'mainHandItemFindStat',mainHand,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="mainHandItemFindStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'mainHandBagSlotStat',mainHand,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="mainHandBagSlotStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Arm <br><br><i style="color: transparent;  
+            text-shadow: 0 0 0 grey; font-size: 35px" class="icon-sign-blank"> 💪</i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armStrbox" value="1" onclick="displayGearStatInput(this.id,'armStrStat',arm,'Str')"><span>Strength</span>
+              </label>
+              <input id="armStrStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armStambox" value="1" onclick="displayGearStatInput(this.id,'armStamStat',arm,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="armStamStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armDexbox" value="1" onclick="displayGearStatInput(this.id,'armDexStat',arm,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="armDexStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armIntbox" value="1" onclick="displayGearStatInput(this.id,'armIntStat',arm,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="armIntStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armWisbox" value="1" onclick="displayGearStatInput(this.id,'armWisStat',arm,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="armWisStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armLuckbox" value="1" onclick="displayGearStatInput(this.id,'armLuckStat',arm,'Luck')"><span>Luck</span>
+              </label>
+              <input id="armLuckStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armHPbox" value="1" onclick="displayGearStatInput(this.id,'armHPStat',arm,'HP')"><span>HP</span>
+              </label>
+              <input id="armHPStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armHPRegbox" value="1" onclick="displayGearStatInput(this.id,'armHPRegStat',arm,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="armHPRegStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armMPbox" value="1" onclick="displayGearStatInput(this.id,'armMPStat',arm,'MP')"><span>MP</span>
+              </label>
+              <input id="armMPStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armMPRegbox" value="1" onclick="displayGearStatInput(this.id,'armMPRegStat',arm,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="armMPRegStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armDefbox" value="1" onclick="displayGearStatInput(this.id,'armDefStat',arm,'Def')"><span>Defense</span>
+              </label>
+              <input id="armDefStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armBlockbox" value="1" onclick="displayGearStatInput(this.id,'armBlockStat',arm,'Block')"><span>Block</span>
+              </label>
+              <input id="armBlockStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armMinbox" value="1" onclick="displayGearStatInput(this.id,'armMinStat',arm,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="armMinStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armMaxbox" value="1" onclick="displayGearStatInput(this.id,'armMaxStat',arm,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="armMaxStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armCritbox" value="1" onclick="displayGearStatInput(this.id,'armCritStat',arm,'Crit')"><span>Critical</span>
+              </label>
+              <input id="armCritStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armHastebox" value="1" onclick="displayGearStatInput(this.id,'armHasteStat',arm,'Haste')"><span>Haste</span>
+              </label>
+              <input id="armHasteStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'armMoveSpdStat',arm,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="armMoveSpdStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armItemFindbox" value="1" onclick="displayGearStatInput(this.id,'armItemFindStat',arm,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="armItemFindStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="armBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'armBagSlotStat',arm,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="armBagSlotStat" type="number" style="display:none" onchange="updateItem(arm,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Chest <br><br>
+            <i class="fas fa-tshirt" style="font-size: 40px; color: grey" aria-hidden="true"></i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestStrbox" value="1" onclick="displayGearStatInput(this.id,'chestStrStat',chest,'Str')"><span>Strength</span>
+              </label>
+              <input id="chestStrStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestStambox" value="1" onclick="displayGearStatInput(this.id,'chestStamStat',chest,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="chestStamStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestDexbox" value="1" onclick="displayGearStatInput(this.id,'chestDexStat',chest,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="chestDexStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestIntbox" value="1" onclick="displayGearStatInput(this.id,'chestIntStat',chest,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="chestIntStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestWisbox" value="1" onclick="displayGearStatInput(this.id,'chestWisStat',chest,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="chestWisStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestLuckbox" value="1" onclick="displayGearStatInput(this.id,'chestLuckStat',chest,'Luck')"><span>Luck</span>
+              </label>
+              <input id="chestLuckStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestHPbox" value="1" onclick="displayGearStatInput(this.id,'chestHPStat',chest,'HP')"><span>HP</span>
+              </label>
+              <input id="chestHPStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestHPRegbox" value="1" onclick="displayGearStatInput(this.id,'chestHPRegStat',chest,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="chestHPRegStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestMPbox" value="1" onclick="displayGearStatInput(this.id,'chestMPStat',chest,'MP')"><span>MP</span>
+              </label>
+              <input id="chestMPStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestMPRegbox" value="1" onclick="displayGearStatInput(this.id,'chestMPRegStat',chest,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="chestMPRegStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestDefbox" value="1" onclick="displayGearStatInput(this.id,'chestDefStat',chest,'Def')"><span>Defense</span>
+              </label>
+              <input id="chestDefStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestBlockbox" value="1" onclick="displayGearStatInput(this.id,'chestBlockStat',chest,'Block')"><span>Block</span>
+              </label>
+              <input id="chestBlockStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestMinbox" value="1" onclick="displayGearStatInput(this.id,'chestMinStat',chest,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="chestMinStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestMaxbox" value="1" onclick="displayGearStatInput(this.id,'chestMaxStat',chest,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="chestMaxStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestCritbox" value="1" onclick="displayGearStatInput(this.id,'chestCritStat',chest,'Crit')"><span>Critical</span>
+              </label>
+              <input id="chestCritStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestHastebox" value="1" onclick="displayGearStatInput(this.id,'chestHasteStat',chest,'Haste')"><span>Haste</span>
+              </label>
+              <input id="chestHasteStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'chestMoveSpdStat',chest,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="chestMoveSpdStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestItemFindbox" value="1" onclick="displayGearStatInput(this.id,'chestItemFindStat',chest,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="chestItemFindStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="chestBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'chestBagSlotStat',chest,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="chestBagSlotStat" type="number" style="display:none" onchange="updateItem(chest,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Bag<br><br>
+            <i class="fas fa-briefcase" style="font-size: 40px; color: grey" aria-hidden="true"></i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagStrbox" value="1" onclick="displayGearStatInput(this.id,'bagStrStat',bag,'Str')"><span>Strength</span>
+              </label>
+              <input id="bagStrStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagStambox" value="1" onclick="displayGearStatInput(this.id,'bagStamStat',bag,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="bagStamStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagDexbox" value="1" onclick="displayGearStatInput(this.id,'bagDexStat',bag,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="bagDexStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagIntbox" value="1" onclick="displayGearStatInput(this.id,'bagIntStat',bag,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="bagIntStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagWisbox" value="1" onclick="displayGearStatInput(this.id,'bagWisStat',bag,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="bagWisStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagLuckbox" value="1" onclick="displayGearStatInput(this.id,'bagLuckStat',bag,'Luck')"><span>Luck</span>
+              </label>
+              <input id="bagLuckStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagHPbox" value="1" onclick="displayGearStatInput(this.id,'bagHPStat',bag,'HP')"><span>HP</span>
+              </label>
+              <input id="bagHPStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagHPRegbox" value="1" onclick="displayGearStatInput(this.id,'bagHPRegStat',bag,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="bagHPRegStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagMPbox" value="1" onclick="displayGearStatInput(this.id,'bagMPStat',bag,'MP')"><span>MP</span>
+              </label>
+              <input id="bagMPStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagMPRegbox" value="1" onclick="displayGearStatInput(this.id,'bagMPRegStat',bag,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="bagMPRegStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagDefbox" value="1" onclick="displayGearStatInput(this.id,'bagDefStat',bag,'Def')"><span>Defense</span>
+              </label>
+              <input id="bagDefStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagBlockbox" value="1" onclick="displayGearStatInput(this.id,'bagBlockStat',bag,'Block')"><span>Block</span>
+              </label>
+              <input id="bagBlockStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagMinbox" value="1" onclick="displayGearStatInput(this.id,'bagMinStat',bag,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="bagMinStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagMaxbox" value="1" onclick="displayGearStatInput(this.id,'bagMaxStat',bag,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="bagMaxStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagCritbox" value="1" onclick="displayGearStatInput(this.id,'bagCritStat',bag,'Crit')"><span>Critical</span>
+              </label>
+              <input id="bagCritStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagHastebox" value="1" onclick="displayGearStatInput(this.id,'bagHasteStat',bag,'Haste')"><span>Haste</span>
+              </label>
+              <input id="bagHasteStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'bagMoveSpdStat',bag,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="bagMoveSpdStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagItemFindbox" value="1" onclick="displayGearStatInput(this.id,'bagItemFindStat',bag,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="bagItemFindStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bagBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'bagBagSlotStat',bag,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="bagBagSlotStat" type="number" style="display:none" onchange="updateItem(bag,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Boots <br><br><i class="fas fa-socks" style="font-size: 40px; color: grey" aria-hidden="true"></i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsStrbox" value="1" onclick="displayGearStatInput(this.id,'bootsStrStat',boots,'Str')"><span>Strength</span>
+              </label>
+              <input id="bootsStrStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsStambox" value="1" onclick="displayGearStatInput(this.id,'bootsStamStat',boots,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="bootsStamStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsDexbox" value="1" onclick="displayGearStatInput(this.id,'bootsDexStat',boots,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="bootsDexStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsIntbox" value="1" onclick="displayGearStatInput(this.id,'bootsIntStat',boots,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="bootsIntStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsWisbox" value="1" onclick="displayGearStatInput(this.id,'bootsWisStat',boots,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="bootsWisStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsLuckbox" value="1" onclick="displayGearStatInput(this.id,'bootsLuckStat',boots,'Luck')"><span>Luck</span>
+              </label>
+              <input id="bootsLuckStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsHPbox" value="1" onclick="displayGearStatInput(this.id,'bootsHPStat',boots,'HP')"><span>HP</span>
+              </label>
+              <input id="bootsHPStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsHPRegbox" value="1" onclick="displayGearStatInput(this.id,'bootsHPRegStat',boots,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="bootsHPRegStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsMPbox" value="1" onclick="displayGearStatInput(this.id,'bootsMPStat',boots,'MP')"><span>MP</span>
+              </label>
+              <input id="bootsMPStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsMPRegbox" value="1" onclick="displayGearStatInput(this.id,'bootsMPRegStat',boots,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="bootsMPRegStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsDefbox" value="1" onclick="displayGearStatInput(this.id,'bootsDefStat',boots,'Def')"><span>Defense</span>
+              </label>
+              <input id="bootsDefStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsBlockbox" value="1" onclick="displayGearStatInput(this.id,'bootsBlockStat',boots,'Block')"><span>Block</span>
+              </label>
+              <input id="bootsBlockStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsMinbox" value="1" onclick="displayGearStatInput(this.id,'bootsMinStat',boots,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="bootsMinStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsMaxbox" value="1" onclick="displayGearStatInput(this.id,'bootsMaxStat',boots,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="bootsMaxStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsCritbox" value="1" onclick="displayGearStatInput(this.id,'bootsCritStat',boots,'Crit')"><span>Critical</span>
+              </label>
+              <input id="bootsCritStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsHastebox" value="1" onclick="displayGearStatInput(this.id,'bootsHasteStat',boots,'Haste')"><span>Haste</span>
+              </label>
+              <input id="bootsHasteStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'bootsMoveSpdStat',boots,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="bootsMoveSpdStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsItemFindbox" value="1" onclick="displayGearStatInput(this.id,'bootsItemFindStat',boots,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="bootsItemFindStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootsBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'bootsBagSlotStat',boots,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="bootsBagSlotStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Glove <br><br><i class="fas fa-mitten" style="font-size: 40px; color: grey" aria-hidden="true"></i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveStrbox" value="1" onclick="displayGearStatInput(this.id,'gloveStrStat',glove,'Str')"><span>Strength</span>
+              </label>
+              <input id="gloveStrStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveStambox" value="1" onclick="displayGearStatInput(this.id,'gloveStamStat',glove,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="gloveStamStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveDexbox" value="1" onclick="displayGearStatInput(this.id,'gloveDexStat',glove,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="gloveDexStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveIntbox" value="1" onclick="displayGearStatInput(this.id,'gloveIntStat',glove,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="gloveIntStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveWisbox" value="1" onclick="displayGearStatInput(this.id,'gloveWisStat',glove,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="gloveWisStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveLuckbox" value="1" onclick="displayGearStatInput(this.id,'gloveLuckStat',glove,'Luck')"><span>Luck</span>
+              </label>
+              <input id="gloveLuckStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveHPbox" value="1" onclick="displayGearStatInput(this.id,'gloveHPStat',glove,'HP')"><span>HP</span>
+              </label>
+              <input id="gloveHPStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveHPRegbox" value="1" onclick="displayGearStatInput(this.id,'gloveHPRegStat',glove,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="gloveHPRegStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveMPbox" value="1" onclick="displayGearStatInput(this.id,'gloveMPStat',glove,'MP')"><span>MP</span>
+              </label>
+              <input id="gloveMPStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveMPRegbox" value="1" onclick="displayGearStatInput(this.id,'gloveMPRegStat',glove,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="gloveMPRegStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveDefbox" value="1" onclick="displayGearStatInput(this.id,'gloveDefStat',glove,'Def')"><span>Defense</span>
+              </label>
+              <input id="gloveDefStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveBlockbox" value="1" onclick="displayGearStatInput(this.id,'gloveBlockStat',glove,'Block')"><span>Block</span>
+              </label>
+              <input id="gloveBlockStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveMinbox" value="1" onclick="displayGearStatInput(this.id,'gloveMinStat',glove,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="gloveMinStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveMaxbox" value="1" onclick="displayGearStatInput(this.id,'gloveMaxStat',glove,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="gloveMaxStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveCritbox" value="1" onclick="displayGearStatInput(this.id,'gloveCritStat',glove,'Crit')"><span>Critical</span>
+              </label>
+              <input id="gloveCritStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveHastebox" value="1" onclick="displayGearStatInput(this.id,'gloveHasteStat',glove,'Haste')"><span>Haste</span>
+              </label>
+              <input id="gloveHasteStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'gloveMoveSpdStat',glove,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="gloveMoveSpdStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveItemFindbox" value="1" onclick="displayGearStatInput(this.id,'gloveItemFindStat',glove,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="gloveItemFindStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="gloveBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'gloveBagSlotStat',glove,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="gloveBagSlotStat" type="number" style="display:none" onchange="updateItem(glove,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Ring <br><br><i class="fas fa-ring" style="font-size: 40px; color: grey" aria-hidden="true"></i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringStrbox" value="1" onclick="displayGearStatInput(this.id,'ringStrStat',ring,'Str')"><span>Strength</span>
+              </label>
+              <input id="ringStrStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringStambox" value="1" onclick="displayGearStatInput(this.id,'ringStamStat',ring,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="ringStamStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringDexbox" value="1" onclick="displayGearStatInput(this.id,'ringDexStat',ring,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="ringDexStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringIntbox" value="1" onclick="displayGearStatInput(this.id,'ringIntStat',ring,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="ringIntStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringWisbox" value="1" onclick="displayGearStatInput(this.id,'ringWisStat',ring,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="ringWisStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringLuckbox" value="1" onclick="displayGearStatInput(this.id,'ringLuckStat',ring,'Luck')"><span>Luck</span>
+              </label>
+              <input id="ringLuckStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringHPbox" value="1" onclick="displayGearStatInput(this.id,'ringHPStat',ring,'HP')"><span>HP</span>
+              </label>
+              <input id="ringHPStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringHPRegbox" value="1" onclick="displayGearStatInput(this.id,'ringHPRegStat',ring,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="ringHPRegStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringMPbox" value="1" onclick="displayGearStatInput(this.id,'ringMPStat',ring,'MP')"><span>MP</span>
+              </label>
+              <input id="ringMPStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringMPRegbox" value="1" onclick="displayGearStatInput(this.id,'ringMPRegStat',ring,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="ringMPRegStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringDefbox" value="1" onclick="displayGearStatInput(this.id,'ringDefStat',ring,'Def')"><span>Defense</span>
+              </label>
+              <input id="ringDefStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringBlockbox" value="1" onclick="displayGearStatInput(this.id,'ringBlockStat',ring,'Block')"><span>Block</span>
+              </label>
+              <input id="ringBlockStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringMinbox" value="1" onclick="displayGearStatInput(this.id,'ringMinStat',ring,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="ringMinStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringMaxbox" value="1" onclick="displayGearStatInput(this.id,'ringMaxStat',ring,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="ringMaxStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringCritbox" value="1" onclick="displayGearStatInput(this.id,'ringCritStat',ring,'Crit')"><span>Critical</span>
+              </label>
+              <input id="ringCritStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringHastebox" value="1" onclick="displayGearStatInput(this.id,'ringHasteStat',ring,'Haste')"><span>Haste</span>
+              </label>
+              <input id="ringHasteStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'ringMoveSpdStat',ring,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="ringMoveSpdStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringItemFindbox" value="1" onclick="displayGearStatInput(this.id,'ringItemFindStat',ring,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="ringItemFindStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="ringBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'ringBagSlotStat',ring,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="ringBagSlotStat" type="number" style="display:none" onchange="updateItem(ring,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Amulet <br><br><i class="fas fa-gem" style="font-size: 40px; color: grey" aria-hidden="true"></i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletStrbox" value="1" onclick="displayGearStatInput(this.id,'amuletStrStat',amulet,'Str')"><span>Strength</span>
+              </label>
+              <input id="amuletStrStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletStambox" value="1" onclick="displayGearStatInput(this.id,'amuletStamStat',amulet,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="amuletStamStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletDexbox" value="1" onclick="displayGearStatInput(this.id,'amuletDexStat',amulet,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="amuletDexStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletIntbox" value="1" onclick="displayGearStatInput(this.id,'amuletIntStat',amulet,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="amuletIntStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletWisbox" value="1" onclick="displayGearStatInput(this.id,'amuletWisStat',amulet,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="amuletWisStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletLuckbox" value="1" onclick="displayGearStatInput(this.id,'amuletLuckStat',amulet,'Luck')"><span>Luck</span>
+              </label>
+              <input id="amuletLuckStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletHPbox" value="1" onclick="displayGearStatInput(this.id,'amuletHPStat',amulet,'HP')"><span>HP</span>
+              </label>
+              <input id="amuletHPStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletHPRegbox" value="1" onclick="displayGearStatInput(this.id,'amuletHPRegStat',amulet,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="amuletHPRegStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletMPbox" value="1" onclick="displayGearStatInput(this.id,'amuletMPStat',amulet,'MP')"><span>MP</span>
+              </label>
+              <input id="amuletMPStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletMPRegbox" value="1" onclick="displayGearStatInput(this.id,'amuletMPRegStat',amulet,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="amuletMPRegStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletDefbox" value="1" onclick="displayGearStatInput(this.id,'amuletDefStat',amulet,'Def')"><span>Defense</span>
+              </label>
+              <input id="amuletDefStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletBlockbox" value="1" onclick="displayGearStatInput(this.id,'amuletBlockStat',amulet,'Block')"><span>Block</span>
+              </label>
+              <input id="amuletBlockStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletMinbox" value="1" onclick="displayGearStatInput(this.id,'amuletMinStat',amulet,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="amuletMinStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletMaxbox" value="1" onclick="displayGearStatInput(this.id,'amuletMaxStat',amulet,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="amuletMaxStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletCritbox" value="1" onclick="displayGearStatInput(this.id,'amuletCritStat',amulet,'Crit')"><span>Critical</span>
+              </label>
+              <input id="amuletCritStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletHastebox" value="1" onclick="displayGearStatInput(this.id,'amuletHasteStat',amulet,'Haste')"><span>Haste</span>
+              </label>
+              <input id="amuletHasteStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'amuletMoveSpdStat',amulet,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="amuletMoveSpdStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletItemFindbox" value="1" onclick="displayGearStatInput(this.id,'amuletItemFindStat',amulet,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="amuletItemFindStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="amuletBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'amuletBagSlotStat',amulet,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="amuletBagSlotStat" type="number" style="display:none" onchange="updateItem(amulet,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Off Hand <br><br><i class="fas fa-hand-sparkles" style="font-size: 40px; color: grey" aria-hidden="true"></i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandStrbox" value="1" onclick="displayGearStatInput(this.id,'offhandStrStat',offhand,'Str')"><span>Strength</span>
+              </label>
+              <input id="offhandStrStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandStambox" value="1" onclick="displayGearStatInput(this.id,'offhandStamStat',offhand,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="offhandStamStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandDexbox" value="1" onclick="displayGearStatInput(this.id,'offhandDexStat',offhand,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="offhandDexStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandIntbox" value="1" onclick="displayGearStatInput(this.id,'offhandIntStat',offhand,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="offhandIntStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandWisbox" value="1" onclick="displayGearStatInput(this.id,'offhandWisStat',offhand,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="offhandWisStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandLuckbox" value="1" onclick="displayGearStatInput(this.id,'offhandLuckStat',offhand,'Luck')"><span>Luck</span>
+              </label>
+              <input id="offhandLuckStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandHPbox" value="1" onclick="displayGearStatInput(this.id,'offhandHPStat',offhand,'HP')"><span>HP</span>
+              </label>
+              <input id="offhandHPStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandHPRegbox" value="1" onclick="displayGearStatInput(this.id,'offhandHPRegStat',offhand,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="offhandHPRegStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandMPbox" value="1" onclick="displayGearStatInput(this.id,'offhandMPStat',offhand,'MP')"><span>MP</span>
+              </label>
+              <input id="offhandMPStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandMPRegbox" value="1" onclick="displayGearStatInput(this.id,'offhandMPRegStat',offhand,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="offhandMPRegStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandDefbox" value="1" onclick="displayGearStatInput(this.id,'offhandDefStat',offhand,'Def')"><span>Defense</span>
+              </label>
+              <input id="offhandDefStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandBlockbox" value="1" onclick="displayGearStatInput(this.id,'offhandBlockStat',offhand,'Block')"><span>Block</span>
+              </label>
+              <input id="offhandBlockStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandMinbox" value="1" onclick="displayGearStatInput(this.id,'offhandMinStat',offhand,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="offhandMinStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandMaxbox" value="1" onclick="displayGearStatInput(this.id,'offhandMaxStat',offhand,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="offhandMaxStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandCritbox" value="1" onclick="displayGearStatInput(this.id,'offhandCritStat',offhand,'Crit')"><span>Critical</span>
+              </label>
+              <input id="offhandCritStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandHastebox" value="1" onclick="displayGearStatInput(this.id,'offhandHasteStat',offhand,'Haste')"><span>Haste</span>
+              </label>
+              <input id="offhandHasteStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'offhandMoveSpdStat',offhand,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="offhandMoveSpdStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandItemFindbox" value="1" onclick="displayGearStatInput(this.id,'offhandItemFindStat',offhand,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="offhandItemFindStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="offhandBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'offhandBagSlotStat',offhand,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="offhandBagSlotStat" type="number" style="display:none" onchange="updateItem(offhand,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <!-- <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn"> -->
+
+        <div class="row" style=" margin-top: 5px;">
+          <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Other <br><br><i class="fas fa-plus" style="font-size: 40px; color: grey" aria-hidden="true"></i></div>
+
+          <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandStrbox" value="1" onclick="displayGearStatInput(this.id,'mainHandStrStat',mainHand,'Str')"><span>Strength</span>
+              </label>
+              <input id="mainHandStrStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Str')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandStambox" value="1" onclick="displayGearStatInput(this.id,'mainHandStamStat',mainHand,'Stam')"><span>Stamina</span>
+              </label>
+              <input id="mainHandStamStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Stam')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandDexbox" value="1" onclick="displayGearStatInput(this.id,'mainHandDexStat',mainHand,'Dex')"><span>Dexterity</span>
+              </label>
+              <input id="mainHandDexStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Dex')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandIntbox" value="1" onclick="displayGearStatInput(this.id,'mainHandIntStat',mainHand,'Int')"><span>Intelligence</span>
+              </label>
+              <input id="mainHandIntStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Int')">
+            </div>
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandWisbox" value="1" onclick="displayGearStatInput(this.id,'mainHandWisStat',mainHand,'Wis')"><span>Wisdom</span>
+              </label>
+              <input id="mainHandWisStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Wis')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandLuckbox" value="1" onclick="displayGearStatInput(this.id,'mainHandLuckStat',mainHand,'Luck')"><span>Luck</span>
+              </label>
+              <input id="mainHandLuckStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Luck')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandHPbox" value="1" onclick="displayGearStatInput(this.id,'mainHandHPStat',mainHand,'HP')"><span>HP</span>
+              </label>
+              <input id="mainHandHPStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'HP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandHPRegbox" value="1" onclick="displayGearStatInput(this.id,'mainHandHPRegStat',mainHand,'HPReg')"><span>HP Reg</span>
+              </label>
+              <input id="mainHandHPRegStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'HPReg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMPbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMPStat',mainHand,'MP')"><span>MP</span>
+              </label>
+              <input id="mainHandMPStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MP')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMPRegbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMPRegStat',mainHand,'MPReg')"><span>MP Reg</span>
+              </label>
+              <input id="mainHandMPRegStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MPReg')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandDefbox" value="1" onclick="displayGearStatInput(this.id,'mainHandDefStat',mainHand,'Def')"><span>Defense</span>
+              </label>
+              <input id="mainHandDefStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandBlockbox" value="1" onclick="displayGearStatInput(this.id,'mainHandBlockStat',mainHand,'Block')"><span>Block</span>
+              </label>
+              <input id="mainHandBlockStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Block')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMinbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMinStat',mainHand,'MinDmg')"><span>Min</span>
+              </label>
+              <input id="mainHandMinStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MinDmg')">
+            </div>
+
+            
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMaxbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMaxStat',mainHand,'MaxDmg')"><span>Max</span>
+              </label>
+              <input id="mainHandMaxStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MaxDmg')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandCritbox" value="1" onclick="displayGearStatInput(this.id,'mainHandCritStat',mainHand,'Crit')"><span>Critical</span>
+              </label>
+              <input id="mainHandCritStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Crit')">
+            </div>
+
+  
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandHastebox" value="1" onclick="displayGearStatInput(this.id,'mainHandHasteStat',mainHand,'Haste')"><span>Haste</span>
+              </label>
+              <input id="mainHandHasteStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'Haste')">
+            </div>
+
+          
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'mainHandMoveSpdStat',mainHand,'MoveSpd')"><span>Move Speed</span>
+              </label>
+              <input id="mainHandMoveSpdStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'MoveSpd')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandItemFindbox" value="1" onclick="displayGearStatInput(this.id,'mainHandItemFindStat',mainHand,'ItemFind')"><span>ItemFind</span>
+              </label>
+              <input id="mainHandItemFindStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'ItemFind')">
+            </div>
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="mainHandBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'mainHandBagSlotStat',mainHand,'BagSlot')"><span>Bag Slots</span>
+              </label>
+              <input id="mainHandBagSlotStat" type="number" style="display:none" onchange="updateItem(mainHand,this.id,'BagSlot')">
+            </div>
+
+
+
+          </div>
+        </div>
+      </div><br>
+  
+
+
+
+    </div>
+    <div class="col-25">
+      <div class="container">
+        <h4>Adjustments <span class="price" style="color:grey"><i class="fa fa-plus"></i></span></h4>
+        <div class="row">
+          <div id="ck-button">
+            <label style="display: block;">
+              <input type="checkbox" id="buffStrbox" value="1" onclick="displayGearStatInput(this.id,'buffStrStat',buff,'Block')"><span>Bulwark</span>
+            </label>
+            <input id="buffStrStat" type="number" style="display:none" onchange="updateGear(character,this.id,'Block')">
+          </div>
+          <div id="ck-button">
+            <label style="display: block;">
+              <input type="checkbox" id="buffDmgbox" value="1" onclick="displayGearStatInput(this.id,'buffDmgStat',buff,'MinDmg')"><span>Warcry</span>
+            </label>
+            <input id="buffDmgStat" type="number" style="display:none" onchange="updateGear(character,this.id,'MinDmg')">
+          </div>
+          <div id="ck-button">
+            <label style="display: block;">
+              <input type="checkbox" id="buffStrbox" value="1" onclick="displayGearStatInput(this.id,'buffStrStat',buff,'Def')"><span>Howl</span>
+            </label>
+            <input id="buffStrStat" type="number" style="display:none" onchange="updateGear(character,this.id,'Def')">
+          </div>
+          <div id="ck-button">
+            <label style="display: block;">
+              <input type="checkbox" id="buffStrbox" value="1" onclick="displayGearStatInput(this.id,'buffStrStat',buff,'Def')"><span>Courage</span>
+            </label>
+            <input id="buffStrStat" type="number" style="display:none" onchange="updateGear(character,this.id,'Def')">
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
