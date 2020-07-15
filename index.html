@@ -4,7 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
+  <meta charset="UTF-8">
   <script>
     var mainHand = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
     var arm = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
@@ -18,9 +18,18 @@
     var other = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
     var buff = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
     var character = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 159, HPReg: 2.8, MP: 120, MPReg: 3.0, Def: 87, Block: 0, MinDmg: 3, MaxDmg: 3, Crit: 6.0, Haste: 0.3, MoveSpd: 97, ItemFind: 3, BagSlot: 15 };
-    const baseCharacter = { Str: 10, Stam: 12, Dex: 10, Int: 10, Wis: 10, Luck: 5, HP: 159, HPReg: 2.8, MP: 120, MPReg: 3.0, Def: 87, Block: 0, MinDmg: 3, MaxDmg: 3, Crit: 6.0, Haste: 0.3, MoveSpd: 97, ItemFind: 3, BagSlot: 15 };
+    const baseCharacter = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 150, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0 };
+    const baseMage = { Str: 10, Stam: 12, Dex: 10, Int: 11, Wis: 10, Luck: 5, HP: 158, HPReg: 2.5, MP: 121, MPReg: 3.0, Def: 27, Block: 0, MinDmg: 4, MaxDmg: 4, Crit: 6.0, Haste: 0.3, MoveSpd: 97, ItemFind: 3, BagSlot: 15 };
+    const baseWarrior = { Str: 10, Stam: 12, Dex: 10, Int: 10, Wis: 10, Luck: 5, HP: 159, HPReg: 2.8, MP: 120, MPReg: 3.0, Def: 87, Block: 0, MinDmg: 3, MaxDmg: 3, Crit: 6.0, Haste: 0.3, MoveSpd: 97, ItemFind: 3, BagSlot: 15 };
+    const baseArcher = { Str: 10, Stam: 12, Dex: 11, Int: 10, Wis: 10, Luck: 5, HP: 158, HPReg: 2.5, MP: 120, MPReg: 3.0, Def: 27, Block: 0, MinDmg: 4, MaxDmg: 4, Crit: 6.0, Haste: 0.3, MoveSpd: 97, ItemFind: 3, BagSlot: 15 };
+    const baseShaman = { Str: 10, Stam: 12, Dex: 10, Int: 10, Wis: 11, Luck: 5, HP: 158, HPReg: 2.5, MP: 121, MPReg: 3.0, Def: 27, Block: 0, MinDmg: 4, MaxDmg: 4, Crit: 6.0, Haste: 0.3, MoveSpd: 97, ItemFind: 3, BagSlot: 15 };
     var appliedStats = { Str: 0, Stam: 0, Dex: 0, Int: 0, Wis: 0, Luck: 0, HP: 0, HPReg: 0, MP: 0, MPReg: 0, Def: 0, Block: 0, MinDmg: 0, MaxDmg: 0, Crit: 0, Haste: 0, MoveSpd: 0, ItemFind: 0, BagSlot: 0, };
-    var characterInfo = { charClass: "warrior", Level: 1, Fame: 0, statsPoints: 3, StatsSpent: 0, Elixir: true, eHP: 0, eDPS: 0, DmgReduce: 0 };
+    var characterInfo = { charClass: "warrior", Level: 1, Fame: 0, statsPoints: 3, StatsSpent: 0, Elixir: false, eHP: 0, eDPS: 0, DmgReduce: 0 };
+
+//TODO: Fix Fame to IF
+//TODO: Add item upgrading
+//TODO: Add Adjustments
+
 
 // How Gear upgrades
 // HP: +3
@@ -44,6 +53,8 @@
       var checkBox = document.getElementById(checkbox);
       var inputElement = document.getElementById(inputBoxElement);
       var inputValid = Boolean(parseInt(inputElement.value));
+      var audio = new Audio('low.mp3');
+      audio.play();
       if (checkBox.checked == true) {
         inputElement.style.display = "inline-block";
         inputElement.style.width = "50px";
@@ -64,7 +75,7 @@
       var total = parseInt(characterInfo['statsPoints']);
       var value = document.getElementById(elementValue).value;
       if (addtostat) {
-        if (left != total) {
+        if (left != total ) {
           appliedStats[id] = parseInt(appliedStats[id]) + 1;
           switch(id) {
             case 'Str': 
@@ -167,53 +178,112 @@
           }
         characterInfo['StatsSpent'] -= 1;
       }
- 
+      var audio = new Audio('low.mp3');
+      audio.play();
       updateCharacterSheet();
     }
 
 
 
     function updateItem(itemToUpdate, elementValue, statToUpdate) {
+      var audio = new Audio('low.mp3');
+      audio.play();
       var value = parseInt(document.getElementById(elementValue).value);
+      if (statToUpdate) {
+          switch(statToUpdate) {
+            case 'Str': 
+            itemToUpdate['HP'] += 1;
+            itemToUpdate['HPReg'] += 0.05;
+            if(characterInfo['charClass'] == "warrior"){
+              itemToUpdate['MaxDmg'] += (value) * 0.3;
+              itemToUpdate['MinDmg'] += (value) * 0.3;
+            }
+            break;
+
+            case 'Stam': 
+            itemToUpdate['HP'] += 4;
+            itemToUpdate['Def'] += 1;
+            break;
+
+            case 'Dex': 
+            itemToUpdate['Crit'] += 0.05;
+            if(characterInfo.charClass == 'archer'){
+              itemToUpdate['MaxDmg'] += 0.4;
+              itemToUpdate['MinDmg'] += 0.4;
+            }
+            break;
+
+            case 'Int': 
+            itemToUpdate['MP'] += 1;
+            itemToUpdate['Crit'] += 0.04;
+            if(characterInfo.charClass == 'mage'){
+              itemToUpdate['MaxDmg'] += 0.4;
+              itemToUpdate['MinDmg'] += 0.4;
+            }
+            break;
+
+            case 'Wis': 
+            itemToUpdate['MP'] += 1;
+            itemToUpdate['Haste'] += 0.04;
+            if(characterInfo.charClass == 'shaman'){
+            itemToUpdate['MaxDmg'] += 0.4;
+            itemToUpdate['MinDmg'] += 0.4;
+            }
+            break;
+
+            case 'Luck': 
+            itemToUpdate['ItemFind'] += 0.5;
+            itemToUpdate['Crit'] += 0.02;
+            break;
+
+          }
+      }
       itemToUpdate[statToUpdate] = value;
-     
       updateCharacterSheet();
     }
 
     function updateClass(elementValue) {
       var value = document.getElementById(elementValue);
-      var audio = new Audio('low.mp3');
-
+     
       var selection = value.value;
       characterInfo['charClass'] = selection;
-      if(selection == "mage"){
-        document.getElementById("charsheetclass").style.backgroundColor = "dodgerblue";
-        audio = new Audio('Mage.mp3');
+
+      switch(selection) {
+            case 'mage': 
+            document.getElementById("charsheetclass").style.backgroundColor = "dodgerblue";
+            break;
+            case "warrior":
+            document.getElementById("charsheetclass").style.backgroundColor = "indianred";
+            document.getElementById("charsheetclass").style.boxShadow = "none";
+            document.getElementById("charsheetclass").style.color = "white";
+            break;
+            case "archer": 
+            document.getElementById("charsheetclass").style.backgroundColor = "#34a853";
+            break;
+            case "shaman":
+            document.getElementById("charsheetclass").style.backgroundColor = "rebeccapurple";
+            break;
       }
-      if(selection == "warrior"){
-        document.getElementById("charsheetclass").style.backgroundColor = "#f0756a";
-      }
-      if(selection == "archer"){
-        document.getElementById("charsheetclass").style.backgroundColor = "#34a853";
-      }
-      if(selection == "shaman"){
-        document.getElementById("charsheetclass").style.backgroundColor = "rebeccapurple";
-        
-      }
+      var audio = new Audio('low.mp3');
       audio.play();
-      updateCharacterSheet();
-     
+      updateCharacterSheet(); 
     }
 
 
     function updateElixir() {
-
-      if (document.getElementById("elixirbox").checked) {
-        appliedStats['BagSlot'] = 5;
-        characterInfo['Elixir'] = true;
-      } else {
+      
+      if (characterInfo['Elixir'] == true || characterInfo['Elixir'] == null)  {
         appliedStats['BagSlot'] = 0;
         characterInfo['Elixir'] = false;
+        document.getElementById("elixirbtn").classList.remove("elixirbtnafter");
+        document.getElementById("elixirbtn").classList.add("elixirbtnbefore");
+      } else {
+        appliedStats['BagSlot'] = 10;
+        characterInfo['Elixir'] = true;
+        document.getElementById("elixirbtn").classList.add("elixirbtnafter");
+        document.getElementById("elixirbtn").classList.remove("elixirbtnbefore");
+       
+
       }
       updateCharacterSheet();
     }
@@ -222,9 +292,12 @@
 
     function calculateStatPoints() {
       characterInfo['statsPoints'] = characterInfo['Level'] * 3;
+  
+     
+
       var left = parseInt(characterInfo['StatsSpent']);
       var total = parseInt(characterInfo['statsPoints']);
-
+      
       if (left == total) {
         var elems = document.getElementsByClassName("statincreasebtn");
         for (var i = 0; i < elems.length; i++) {
@@ -256,16 +329,18 @@
       var defcalc = (1- 0.9 * (1 - Math.exp(-def * 0.0025)));
       var blockcalc = defcalc * (1- (block * 0.8) /100);
       var eHP = (hp) / blockcalc;
-       //=ROUND(C16/((1-0.9*(1-EXP(-C20 * 0.0025)))*(1-((C21 * 0.8)/100))),2) Math.pow(base, exponent) Math.exp(x)
-
-       //watch HP 
       characterInfo['eHP'] = eHP;
     }
 
     function calculateDmgReduce(){
       var def = parseInt(character['Def']) ? parseInt(character['Def']) : 0;
-      var dmgReduce = (1 - Math.exp(-def * 0.0025))* 0.9;
+      var dmgReduce = (1 - Math.exp(-def * 0.0025))* 0.9 * 100;
      characterInfo['DmgReduce'] = dmgReduce;
+    }
+
+    function calculateFameIF(){
+      var itemfind = parseInt(character['ItemFind']) ? parseInt(character['ItemFind']) : 0; 
+
     }
 
     function calulateCharacterStats() {
@@ -280,7 +355,58 @@
 
 
     function applyToCharacter(object/*,..*/) {
-      var temp = Object.assign({}, baseCharacter);
+      var baseSheet
+      switch(characterInfo.charClass) {
+            case "mage": 
+            baseSheet = baseMage;
+            baseMage['Stam'] = characterInfo['Level'] *2 + 10;
+            baseMage['Def'] = (characterInfo['Level'] *2) + 25;
+            baseMage['HP'] = 100 + (characterInfo['Level'] *2 + 9)*4;
+            baseMage['Int'] = characterInfo['Level'] + 10;
+            baseMage['MP'] = (characterInfo['Level'] + 10) + 110;
+            baseMage['Crit'] = (characterInfo['Level'] + 10) * 0.04;
+            baseMage['MaxDmg'] = (characterInfo['Level'] + 10) * 0.4;
+            baseMage['MinDmg'] =(characterInfo['Level'] + 10) * 0.4;
+            baseMage['ItemFind'] = (characterInfo['Fame'] * 5) + 3;
+            break;
+            case "warrior":
+            baseSheet = baseWarrior;
+            baseWarrior['Stam'] = characterInfo['Level'] *2 + 10;
+            baseWarrior['Def'] = (characterInfo['Level'] *2) + 25 + 60;
+            baseWarrior['HP'] = 100 + (characterInfo['Level'] *2 + 10)*4 + characterInfo['Level'] + 10;
+            baseWarrior['Str'] = characterInfo['Level'] + 10;
+            baseWarrior['HPReg'] = (characterInfo['Level']) * 0.08 + 2.8;
+            baseWarrior['MaxDmg'] = (characterInfo['Level'] + 10) * 0.3;
+            baseWarrior['MinDmg'] =(characterInfo['Level'] + 10) * 0.3;
+            baseWarrior['ItemFind'] = (characterInfo['Fame'] * 5) + 3;
+            break;
+            case "archer": 
+            baseSheet = baseArcher;
+            baseArcher['Stam'] = characterInfo['Level'] *2 + 10;
+            baseArcher['Def'] = (characterInfo['Level'] *2) + 25;
+            baseArcher['HP'] = 100 + (characterInfo['Level'] *2 + 9)*4;
+            baseArcher['Dex'] = characterInfo['Level'] + 10;
+            baseArcher['Crit'] = (characterInfo['Level'] + 10) * 0.05;
+            baseArcher['MaxDmg'] = (characterInfo['Level'] + 10) * 0.4;
+            baseArcher['MinDmg'] =(characterInfo['Level'] + 10) * 0.4;
+            baseArcher['ItemFind'] = (characterInfo['Fame'] * 5) + 3;
+            break;
+            case "shaman":
+            baseSheet = baseShaman;
+            baseShaman['Stam'] = characterInfo['Level'] *2 + 10;
+            baseShaman['Def'] = (characterInfo['Level'] *2) + 25;
+            baseShaman['HP'] = 100 + (characterInfo['Level'] *2 + 9)*4;
+            baseShaman['Wis'] = characterInfo['Level'] + 10;
+            baseShaman['MP'] = (characterInfo['Level'] + 10) + 110;
+            baseShaman['Haste'] = (characterInfo['Level'] + 10) * 0.04;
+            baseShaman['MaxDmg'] = (characterInfo['Level'] + 10) * 0.4;
+            baseShaman['MinDmg'] =(characterInfo['Level'] + 10) * 0.4;
+            baseShaman['ItemFind'] = (characterInfo['Fame'] * 5) + 3;
+            
+            break;
+      }
+      
+      var temp = Object.assign({}, baseSheet);
       for (var i = 1; i < arguments.length; i++) {
         for (var prop in arguments[i]) {
           if (object.hasOwnProperty(prop)) {
@@ -291,57 +417,56 @@
       character = temp;
     }
 
-    function updateCharacterSheet() {
 
+
+    function updateCharacterSheet() {
+      
       
       applyToCharacter(character, mainHand, arm, chest, bag, boot, glove, ring, amulet, offhand, other, buff, appliedStats);
       calulateCharacterStats();
-      // Update all fields displaying character fields      
+      // Base Stats     
       document.getElementById('charsheetstam').value = character.Stam;
       document.getElementById('charsheetstr').value = character.Str;
       document.getElementById('charsheetdex').value = character.Dex;
       document.getElementById('charsheetint').value = character.Int;
       document.getElementById('charsheetwisdom').value = character.Wis;
       document.getElementById('charsheetluck').value = character.Luck;
-
+      // Minor Stats
       document.getElementById('charsheethp').value = character.HP;
-      document.getElementById('charsheethpreg').value = character.HPReg;
+      document.getElementById('charsheethpreg').value = character.HPReg.toFixed(2);
       document.getElementById('charsheetmp').value = character.MP;
-      document.getElementById('charsheetmpreg').value = character.MPReg;
+      document.getElementById('charsheetmpreg').value = character.MPReg.toFixed(2);
       document.getElementById('charsheetdefense').value = character.Def;
-      document.getElementById('charsheetblock').value = character.Block;
-      document.getElementById('charsheetmin').value = character.MinDmg;
-      document.getElementById('charsheetmax').value = character.MaxDmg;
-      document.getElementById('charsheetcrit').value = character.Crit;
-      document.getElementById('charsheethaste').value = character.Haste;
+      document.getElementById('charsheetblock').value = character.Block.toFixed(2)+' %';
+      document.getElementById('charsheetmin').value = character.MinDmg.toFixed(2);
+      document.getElementById('charsheetmax').value = character.MaxDmg.toFixed(2);
+      document.getElementById('charsheetcrit').value = character.Crit.toFixed(2)+' %';
+      document.getElementById('charsheethaste').value = character.Haste.toFixed(2)+' %';
       document.getElementById('charsheetmove').value = character.MoveSpd;
       document.getElementById('charsheetbag').value = character.BagSlot;
-      document.getElementById('charsheetitemfind').value = character.ItemFind;
+      document.getElementById('charsheetitemfind').value = character.ItemFind +' %';
 
-      document.getElementById('charsheetdmgreduce').value = characterInfo.DmgReduce;
-      document.getElementById('charsheetehp').value = characterInfo.eHP;
-      document.getElementById('charsheetedps').value = characterInfo.eDPS;
+      document.getElementById('charsheetdmgreduce').value = characterInfo.DmgReduce.toFixed(2) + ' %';
+      document.getElementById('charsheetehp').value = characterInfo.eHP.toFixed(2);
+      document.getElementById('charsheetedps').value = characterInfo.eDPS.toFixed(2);
       document.getElementById('charsheetclass').value = characterInfo.charClass;
       document.getElementById('charsheetlevel').value = characterInfo.Level;
       document.getElementById('charsheetfame').value = characterInfo.Fame;
       document.getElementById('charsheetstats').value = characterInfo.statsPoints - characterInfo.StatsSpent;
-     
-      var audio = new Audio('equip.mp3').play();
-     
+          
       console.log("Character: \n" + JSON.stringify(character) + "\n\n Info: " + JSON.stringify(characterInfo) + "\n\n applied: " + JSON.stringify(appliedStats));
       // localStorage.setItem("save", JSON.stringify(save));
       //var save = {character1: character, maingear: mainHand,etc..}
       // var savegame = JSON.parse(localStorage.getItem("save"));
-      //https://www.freecodecamp.org/news/learning-javascript-by-making-a-game-4aca51ad9030/
+
     }
 
 
 
   </script>
   <style>
-
     html{
-      background-color: #1e1e1e;
+      background-color: #e9e9e9;
     }
     body {
   font-family: Arial;
@@ -351,6 +476,7 @@
 
 * {
   box-sizing: border-box;
+
 }
 
 .row {
@@ -389,9 +515,9 @@
 }
 
 .container {
-  background-color: #23272A;
+  background-color: #e9e9e9;
   padding: 5px 20px 15px 20px;
-  color: white;
+  color: grey;
 }
 
 input[type=text] {
@@ -399,43 +525,76 @@ input[type=text] {
   margin-bottom: 10px;
   padding: 5px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 30px;
   float: right;
+  outline: none;
+}
+
+input[type=step] {
+  width: 35%;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  height: 26px;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  outline: none;
+
+}
+
+input[type=step]:focus {
+  /* outline: 1px solid gray; */
+  outline: none;
 }
 
 input[type=number] {
-  width: 30%;
- /*margin-bottom: 10px;*/
+  width: 35%;
   padding: 5px;
-  border: 1px solid grey;
-    background-color: #343434;
-    color: white;
-    text-align: center;
-height: 26px;
-  
+  border: none;
+  background-color: transparent;
+  box-shadow: inset -6px -6px 6px #ffffff6b, inset 6px 6px 9px #ccccccc2;
+  color: grey;
+  text-align: center;
+  height: 26px;
+  /* box-shadow: inset -6px -6px 6px #ffffff6b, inset 6px 6px 9px #ccccccc2; */
+  /* border-radius: 30px; */
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  outline: none;
 }
 
 input[type=number]:focus {
-  outline: 1px solid gray;
+  outline: none;
 }
 
+
 select {
-  width: 30%;
+  width: 35%;
   margin-bottom: 10px;
   padding: 5px;
-  border: 1px solid grey;
-    background-color: #343434;
-    color: white;
-    text-align: center;
+  /* border: 1px solid grey; */
+  background-color: #e9e9e9;
+  border: none;
+  /* color: white; */
+  text-align: center;
+  border-radius: 30px;
+  box-shadow: inset -6px -6px 6px #ffffff6b, inset 6px 6px 9px #ccccccc2;
+  outline: none;
 }
 
 option:not(:checked){
-  background-color: #343434;
+  background-color: white;
+  color: grey;
 }
 
+
 .charsheetdisabled {
-  width: 50px; 
-  color: yellow !important; 
+  color: black !important;
+  width: 50px;
 }
 
 input:disabled {
@@ -444,7 +603,6 @@ input:disabled {
 }
 
 label {
-  /*margin-bottom: 10px;*/
   display: block;
 }
 
@@ -455,26 +613,28 @@ label {
 }
 
 .btn {
-  background-color: #4CAF50;
-  color: white;
-  
-  margin-bottom: 10px;
+  background-color: #e9e9e9;
+  color: lightgrey;
+  /* margin-bottom: 10px; */
   border: none;
-
   cursor: pointer;
- 
+  border-radius: 100%;
+  box-shadow: -6px -6px 9px #ffffff6b, 6px 6px 9px #00000030;
+  outline: none;
 }
 
 .btn:disabled {
   background-color: transparent;
+  box-shadow: inset -6px -6px 6px #ffffff6b, inset 6px 6px 9px #ccccccc2
 }
 
 .btn:disabled:hover {
-  background-color: #454545;
+  
 }
 
 .btn:hover {
-  background-color: #45a049;
+  
+  box-shadow: inset -6px -6px 6px #ffffff6b, inset 6px 6px 9px #ccccccc2
 }
 
 a {
@@ -503,18 +663,19 @@ span.price {
 
 #ck-button {
     margin:4px;
-    background-color:transparentF;
-    border-radius:2px;   
+    background-color:transparent;
     overflow:auto;
     float:left;
-    user-select: none
+    user-select: none;
+    /* box-shadow: inset -6px -6px 6px #ffffff6b, inset 6px 6px 9px #ccccccc2; */
+    border-radius: 30px;
 }
 
 #ck-button:hover {
     margin:4px;
     overflow:auto;
     float:left;
-    background-color: lightslategray;
+    box-shadow: -6px -6px 9px #ffffff6b, 6px 6px 9px #00000030;
     
 }
 
@@ -525,9 +686,11 @@ span.price {
 
 #ck-button label span {
     text-align:center;
-    padding:3px 2px;
     display:inline-block;
-
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 #ck-button label {
@@ -543,9 +706,12 @@ span.price {
 }
 
 #ck-button input:checked + span {
-    background-color:#4285f4;
-    color:#fff;
-
+    /* background-color:#4285f4; */
+    color: grey;
+    /* border-radius: 30px; */
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: inset -6px -6px 6px #ffffff6b, inset 6px 6px 9px #ccccccc2
 }
 
 .tooltip {
@@ -590,13 +756,47 @@ span.price {
     font: bold .4em sans-serif;
 }
 
+.unavailable {
+  /* border: 2px solid darkred; */
+  border-radius: 30px;
+  box-shadow: -6px -6px 9px #ffffff6b, 6px 6px 9px #00000030;
+}
+
+.statdecreasebtn{
+  margin-right: 5px;
+  
+}
+
+
+.elixirbtnbefore {
+  color: lightgrey;
+   
+}
+
+.elixirbtnafter {
+    color: #34a853;
+  
+}
+
+
+.shadow {
+  /* box-shadow: #fff -6px -6px 9px, rgba(#000, 0.4) 6px 6px 9px ; */
+  /* box-shadow: -1px 0px 9px 4px #b8b5b5; */
+  border-radius: 30px;
+  box-shadow: -6px -6px 9px #ffffff6b, 6px 6px 9px #00000030;
+}
+
+.shadow-inset {
+  box-shadow: inset -6px -6px 6px #ffffff6b, inset 6px 6px 9px #ccccccc2;
+}
+
 </style>
 </head>
 
 <body onload="updateCharacterSheet()">
   <div class="row">
     <div class="col-75">
-      <div class="container">
+      <div class="container shadow">
 
         <!-- <button class="  " onclick="updateCharacterSheet()"></button> -->
         <div class="row">
@@ -608,21 +808,85 @@ span.price {
                 placeholder="OhG & Guild"></input></div>
 
             <div style="display: flex"><i class="fas fa-mask"></i>&nbsp;<label for="fname" style="flex: 1;">Class:</label>
-              <select name="classSelect" id="charsheetclass" onchange="updateClass(this.id)">
-                <option value="warrior">Warrior</option>
-                <option value="shaman">Shaman</option>
-                <option value="archer">Archer</option>
-                <option value="mage">Mage</option>
+              <select name="classSelect" id="charsheetclass" style="background-color: indianred; text-align-last: center; box-shadow: none; color: white;" onchange="updateClass(this.id)">
+                <option value="warrior" >Warrior</option>
+                <option value="shaman" >Shaman</option>
+                <option value="archer" >Archer</option>
+                <option value="mage" >Mage</option>
               </select>
             </div>
-            <div style="display: flex"><i class="fas fa-star"></i>&nbsp;<label for="fname" style="flex: 1">Level</label><input
-                type=number max="45" min="0" id="charsheetlevel" onchange="updateItem(characterInfo, this.id,'Level')"></input></div>
-            <div style="display: flex"><i class="fas fa-crown"></i>&nbsp;<label for="fname" style="flex: 1; color: #ea00ff;">Fame
-                Rank</label><input type=number id="charsheetfame" onchange="updateItem(characterInfo, this.id,'Fame')"></input></div>
-            <div style="display: flex"><i class="fas fa-arrow-circle-up"></i>&nbsp;<label for="fname" style="flex: 1">Stats
-                Left</label><input type=number id="charsheetstats" disabled></input></div>
-            <div style="display: flex"><i class="fas fa-star"></i>&nbsp;<label for="fname" style="flex: 1">Elixir</label><input
-                type="checkbox"  id="elixirbox" onclick="updateElixir()"></div>
+            <div style="display: flex"><i class="fas fa-star"></i>&nbsp;<label for="fname" style="flex: 1">Level</label>
+              <select
+                style="text-align-last: center;" id="charsheetlevel" onchange="updateItem(characterInfo, this.id,'Level')">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
+                <option value=11>11</option>
+                <option value=12>12</option>
+                <option value=13>13</option>
+                <option value=14>14</option>
+                <option value=15>15</option>
+                <option value=16>16</option>
+                <option value=17>17</option>
+                <option value=18>18</option>
+                <option value=19>19</option>
+                <option value=20>20</option>
+                <option value=21>21</option>
+                <option value=22>22</option>
+                <option value=23>23</option>
+                <option value=24>24</option>
+                <option value=25>25</option>
+                <option value=26>26</option>
+                <option value=27>27</option>
+                <option value=28>28</option>
+                <option value=29>29</option>
+                <option value=30>30</option>
+                <option value=31>31</option>
+                <option value=32>32</option>
+                <option value=33>33</option>
+                <option value=34>34</option>
+                <option value=35>35</option>
+                <option value=36>36</option>
+                <option value=37>37</option>
+                <option value=38>38</option>
+                <option value=39>39</option>
+                <option value=40>40</option>
+                <option value=41>41</option>
+                <option value=42>42</option>
+                <option value=43>43</option>
+                <option value=44>44</option>
+                <option value=45>45</option>
+              </select>
+              </div>
+            <div style="display: flex"><i class="fas fa-crown"></i>&nbsp;<label for="fname" style="flex: 1; ">Fame
+                Rank</label>
+                <select id="charsheetfame" style="text-align-last: center;" onchange="updateItem(characterInfo, this.id,'Fame')">
+                  <option value=0>0</option>
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  <option value=4>4</option>
+                  <option value=5>5</option>
+                  <option value=6>6</option>
+                  <option value=7>7</option>
+                  <option value=8>8</option>
+                  <option value=9>9</option>
+                  <option value=10>10</option>
+                </select>
+            </div>
+
+            <div style="display: flex; ">
+              <i class="fas fa-star"></i>&nbsp;<label for="fname" style="flex:1; margin-bottom: 5px;">Elixir</label>               
+              <button class="btn elixirbtnbefore" style="font-weight: bold;" id="elixirbtn" onclick="updateElixir()">★</button>
+            </div>
+            
 
 
           </div>
@@ -630,66 +894,63 @@ span.price {
           <div class="col-50">
             <h3>Base</h3>     
 
-            <div style="display: flex"><i class="fas fa-dumbbell"></i>&nbsp;
+            <div style="display: flex; margin-bottom: 5px;"><i class="fas fa-dumbbell"></i>&nbsp;
               <label for="fname" style="flex: 1; "> <div class="tooltip">Strength
                 <span class="tooltiptext">Strength is used to promote HP (+1) and HP Reg (+0.05) for your character. This increases Warrior's Min and Max damage.</span>
               </div></label>
               
-              <input type=number id="charsheetstr" disabled></input>
-              <button class="btn statdecreasebtn" id="baseDecreaseStr" onclick="updateBase('Str',false ,'charsheetstr')"><i class="fas fa-arrow-down"></i></button>
-              <button class="btn statincreasebtn" onclick="updateBase('Str',true ,'charsheetstr')"><i class="fas fa-arrow-up"></i></button>
+              <input type=step id="charsheetstr" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseStr" onclick="updateBase('Str',false ,'charsheetstr')">&#9660;</button>
+              <button class="btn statincreasebtn" onclick="updateBase('Str',true ,'charsheetstr')">&#9650;</button>
             </div>
 
-            <div style="display: flex"><i class="fas fa-heartbeat"></i>&nbsp;
+            <div style="display: flex; margin-bottom: 5px;"><i class="fas fa-heartbeat"></i>&nbsp;
               <label for="fname" style="flex: 1; "> <div class="tooltip">Stamina
                 <span class="tooltiptext">Stamina is used to promote HP (+4) and Defense (+1) for your character.</span>
               </div></label>
-              <input type=number id="charsheetstam" disabled></input>
-              <button class="btn statdecreasebtn" id="baseDecreaseStam" onclick="updateBase('Stam',false,'charsheetstam')"><i
-                  class="fas fa-arrow-down"></i></button>
-              <button class="btn statincreasebtn" onclick="updateBase('Stam',true,'charsheetstam')"><i class="fas fa-arrow-up"></i></button>
+              <input type=step id="charsheetstam" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseStam" onclick="updateBase('Stam',false,'charsheetstam')">&#9660;</button>
+              <button class="btn statincreasebtn" onclick="updateBase('Stam',true,'charsheetstam')">&#9650;</button>
             </div>
 
-            <div style="display: flex"><i class="fas fa-bolt"></i>&nbsp;
+            <div style="display: flex; margin-bottom: 5px;"><i class="fas fa-bolt"></i>&nbsp;
               <label for="fname" style="flex: 1; "> <div class="tooltip">Dexterity
                 <span class="tooltiptext">Dexterity is used to promote Critical (+0.05) for your character. This increases Archer's Min and Max damage.</span>
               </div></label>
-              <input type=number id="charsheetdex" disabled></input>
-              <button class="btn statdecreasebtn" id="baseDecreaseDex" onclick="updateBase('Dex',false ,'charsheetdex')"><i class="fas fa-arrow-down"></i></button>
-              <button class="btn statincreasebtn"  onclick="updateBase('Dex',true ,'charsheetdex')"><i class="fas fa-arrow-up"></i></button>
+              <input type=step id="charsheetdex" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseDex" onclick="updateBase('Dex',false ,'charsheetdex')">&#9660;</button>
+              <button class="btn statincreasebtn"  onclick="updateBase('Dex',true ,'charsheetdex')">&#9650;</button>
             </div>
 
-            <div style="display: flex"><i class="fas fa-dice-d20"></i>&nbsp;
+            <div style="display: flex; margin-bottom: 5px;"><i class="fas fa-dice-d20"></i>&nbsp;
               <label for="fname" style="flex: 1; "> <div class="tooltip">Intelligence
                 <span class="tooltiptext">Intelligence is used to promote MP (+1) and Critical (+0.04) for your character. This increases Mage's Min and Max damage.</span>
               </div></label>
-              <input type=number id="charsheetint" disabled></input>
-              <button class="btn statdecreasebtn" id="baseDecreaseInt" onclick="updateBase('Int',false ,'charsheetint')"><i class="fas fa-arrow-down"></i></button>
-              <button class="btn statincreasebtn"  onclick="updateBase('Int',true ,'charsheetint')"><i class="fas fa-arrow-up"></i></button>
+              <input type=step id="charsheetint" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseInt" onclick="updateBase('Int',false ,'charsheetint')">&#9660;</button>
+              <button class="btn statincreasebtn"  onclick="updateBase('Int',true ,'charsheetint')">&#9650;</button>
             </div>
 
-            <div style="display: flex"><i class="fas fa-brain"></i>&nbsp;
+            <div style="display: flex; margin-bottom: 5px;"><i class="fas fa-brain"></i>&nbsp;
               <label for="fname" style="flex: 1; "> <div class="tooltip">Wisdom
                 <span class="tooltiptext">Wisdom is used to promote MP (+1) and Haste (+0.03) for your character. This increases Shaman's Min and Max damage.</span>
               </div></label>
-              <input type=number id="charsheetwisdom" disabled></input>
-              <button class="btn statdecreasebtn" id="baseDecreaseInt" onclick="updateBase('Wis',false ,'charsheetwisdom')"><i
-                  class="fas fa-arrow-down"></i></button>
-              <button class="btn statincreasebtn" onclick="updateBase('Wis',true ,'charsheetwisdom')"><i
-                  class="fas fa-arrow-up"></i></button>
+              <input type=step id="charsheetwisdom" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseInt" onclick="updateBase('Wis',false ,'charsheetwisdom')">&#9660;</button>
+              <button class="btn statincreasebtn" onclick="updateBase('Wis',true ,'charsheetwisdom')">&#9650;</button>
             </div>
 
-            <div style="display: flex"><i class="fas fa-dice-three"></i>&nbsp;
+            <div style="display: flex; margin-bottom: 5px;"><i class="fas fa-dice-three"></i>&nbsp;
               <label for="fname" style="flex: 1; "> <div class="tooltip">Luck
                 <span class="tooltiptext">Luck is used to promote Critical (+0.02) and Item Find (+0.5) for your character.</span>
               </div></label>
-              <input type=number id="charsheetluck" disabled></input>
-              <button class="btn statdecreasebtn" id="baseDecreaseInt" onclick="updateBase('Luck',false ,'charsheetluck')"><i
-                  class="fas fa-arrow-down"></i></button>
-              <button class="btn statincreasebtn" value="1" onclick="updateBase('Luck',true ,'charsheetluck')"><i class="fas fa-arrow-up"></i></button>
+              <input type=step id="charsheetluck" disabled></input>
+              <button class="btn statdecreasebtn" id="baseDecreaseInt" onclick="updateBase('Luck',false ,'charsheetluck')">&#9660;</button>
+              <button class="btn statincreasebtn" value="1" onclick="updateBase('Luck',true ,'charsheetluck')">&#9650;</button>
             </div>
 
-
+            <div style="display: flex; color: grey;">&#9650;</i>&nbsp;<label for="fname" style="">Stats
+              Left</label><input type=step style="color: grey;" id="charsheetstats" disabled></input></div>
 
           </div>
 
@@ -698,73 +959,73 @@ span.price {
           <div class="col-33">
             <div style="display: flex"><label for="fname" style="flex: 1; "> <div class="tooltip">HP
               <span class="tooltiptext">Overall Health Points of the character.</span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheethp" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1; "> <div class="tooltip">HP Reg
               <span class="tooltiptext">Amount of Health Points the character recovers per 5 seconds.</span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheethpreg" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1; "> <div class="tooltip">MP
               <span class="tooltiptext">Overall Mana Points of the character.</span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetmp" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">MP Reg
               <span class="tooltiptext"> Amount of Mana Points the character recovers per 5 seconds.</span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetmpreg" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Defense
               <span class="tooltiptext"> Reduces damage taken by % amount. </span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetdefense" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Block
               <span class="tooltiptext"> Chance of blocking an attack, negates the attack's damage by 80%. Facing an enemy promotes better percentage. </span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetblock" disabled></input></div>
 
           </div>
           <div class="col-33">
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Min Dmg
               <span class="tooltiptext"> Minimum damage an attack will do (without taking critical and the target's defense into consideration)</span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetmin" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Max Dmg
               <span class="tooltiptext"> Maximum damage an attack will do (without taking critical and the target's defense into consideration)</span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetmax" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Critical
               <span class="tooltiptext"> % chance of doing a critical hit and doing high damage while ignoring enemy armor. </span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetcrit" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Haste
               <span class="tooltiptext">Increases cooldowns, casting times, and interval rate of buffs that deal damage or heal. Does not display. </span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheethaste" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Dmg Reduce
               <span class="tooltiptext">Damage reduction % from blocking an attack </span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetdmgreduce" disabled></input></div>
 
           </div>
           <div class="col-33">
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Move Speed
               <span class="tooltiptext">How fast your character moves </span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetmove" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Bag Slots
               <span class="tooltiptext">Number of bag slots you have</span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetbag" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">Item Find
               <span class="tooltiptext"> Increases the number of items and gold dropped from monsters. Fame and luck increase this.</span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetitemfind" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">eHP
               <span class="tooltiptext"> Effective HP calculates how much damage you can take with HP, Block, Reg, etc combined </span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetehp" disabled></input></div>
             <div style="display: flex"><label for="fname" style="flex: 1;"><div class="tooltip">eDPS
               <span class="tooltiptext"> Effective Damage Per Seconds calculates how much damage you can deal with Min, Max, Critical, etc combined </span>
-            </div></label><input type=number class="charsheetdisabled"
+            </div></label><input type=step class="charsheetdisabled"
                 id="charsheetedps" disabled></input></div>
 
           </div>
@@ -779,7 +1040,7 @@ span.price {
 
         <div class="row" style=" margin-top: 5px;">
           <div style="display: inline-block; text-align: center; margin: auto;" class="col-25"> Main Hand <br><br><i
-              class="fas fa-fist-raised" data-count="2" style="font-size: 40px; color: grey"></i></div>
+              class="fas fa-fist-raised" data-count="" style="font-size: 40px; color: grey"></i></div>
 
           <div id="MainHandSection" class="col-75" style="margin-top: 15px;">
 
@@ -1408,140 +1669,140 @@ span.price {
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsStrbox" value="1" onclick="displayGearStatInput(this.id,'bootsStrStat',boots,'Str')"><span>Strength</span>
+                <input type="checkbox" id="bootStrbox" value="1" onclick="displayGearStatInput(this.id,'bootStrStat',boot,'Str')"><span>Strength</span>
               </label>
-              <input id="bootsStrStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Str')">
+              <input id="bootStrStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Str')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsStambox" value="1" onclick="displayGearStatInput(this.id,'bootsStamStat',boots,'Stam')"><span>Stamina</span>
+                <input type="checkbox" id="bootStambox" value="1" onclick="displayGearStatInput(this.id,'bootStamStat',boot,'Stam')"><span>Stamina</span>
               </label>
-              <input id="bootsStamStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Stam')">
+              <input id="bootStamStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Stam')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsDexbox" value="1" onclick="displayGearStatInput(this.id,'bootsDexStat',boots,'Dex')"><span>Dexterity</span>
+                <input type="checkbox" id="bootDexbox" value="1" onclick="displayGearStatInput(this.id,'bootDexStat',boot,'Dex')"><span>Dexterity</span>
               </label>
-              <input id="bootsDexStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Dex')">
+              <input id="bootDexStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Dex')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsIntbox" value="1" onclick="displayGearStatInput(this.id,'bootsIntStat',boots,'Int')"><span>Intelligence</span>
+                <input type="checkbox" id="bootIntbox" value="1" onclick="displayGearStatInput(this.id,'bootIntStat',boot,'Int')"><span>Intelligence</span>
               </label>
-              <input id="bootsIntStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Int')">
+              <input id="bootIntStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Int')">
             </div>
             
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsWisbox" value="1" onclick="displayGearStatInput(this.id,'bootsWisStat',boots,'Wis')"><span>Wisdom</span>
+                <input type="checkbox" id="bootWisbox" value="1" onclick="displayGearStatInput(this.id,'bootWisStat',boot,'Wis')"><span>Wisdom</span>
               </label>
-              <input id="bootsWisStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Wis')">
+              <input id="bootWisStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Wis')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsLuckbox" value="1" onclick="displayGearStatInput(this.id,'bootsLuckStat',boots,'Luck')"><span>Luck</span>
+                <input type="checkbox" id="bootLuckbox" value="1" onclick="displayGearStatInput(this.id,'bootLuckStat',boot,'Luck')"><span>Luck</span>
               </label>
-              <input id="bootsLuckStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Luck')">
+              <input id="bootLuckStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Luck')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsHPbox" value="1" onclick="displayGearStatInput(this.id,'bootsHPStat',boots,'HP')"><span>HP</span>
+                <input type="checkbox" id="bootHPbox" value="1" onclick="displayGearStatInput(this.id,'bootHPStat',boot,'HP')"><span>HP</span>
               </label>
-              <input id="bootsHPStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'HP')">
+              <input id="bootHPStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'HP')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsHPRegbox" value="1" onclick="displayGearStatInput(this.id,'bootsHPRegStat',boots,'HPReg')"><span>HP Reg</span>
+                <input type="checkbox" id="bootHPRegbox" value="1" onclick="displayGearStatInput(this.id,'bootHPRegStat',boot,'HPReg')"><span>HP Reg</span>
               </label>
-              <input id="bootsHPRegStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'HPReg')">
+              <input id="bootHPRegStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'HPReg')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsMPbox" value="1" onclick="displayGearStatInput(this.id,'bootsMPStat',boots,'MP')"><span>MP</span>
+                <input type="checkbox" id="bootMPbox" value="1" onclick="displayGearStatInput(this.id,'bootMPStat',boot,'MP')"><span>MP</span>
               </label>
-              <input id="bootsMPStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MP')">
+              <input id="bootMPStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'MP')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsMPRegbox" value="1" onclick="displayGearStatInput(this.id,'bootsMPRegStat',boots,'MPReg')"><span>MP Reg</span>
+                <input type="checkbox" id="bootMPRegbox" value="1" onclick="displayGearStatInput(this.id,'bootMPRegStat',boot,'MPReg')"><span>MP Reg</span>
               </label>
-              <input id="bootsMPRegStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MPReg')">
-            </div>
-
-
-            <div id="ck-button">
-              <label style="display: inline-block;">
-                <input type="checkbox" id="bootsDefbox" value="1" onclick="displayGearStatInput(this.id,'bootsDefStat',boots,'Def')"><span>Defense</span>
-              </label>
-              <input id="bootsDefStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Def')">
+              <input id="bootMPRegStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'MPReg')">
             </div>
 
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsBlockbox" value="1" onclick="displayGearStatInput(this.id,'bootsBlockStat',boots,'Block')"><span>Block</span>
+                <input type="checkbox" id="bootDefbox" value="1" onclick="displayGearStatInput(this.id,'bootDefStat',boot,'Def')"><span>Defense</span>
               </label>
-              <input id="bootsBlockStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Block')">
+              <input id="bootDefStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Def')">
+            </div>
+
+
+            <div id="ck-button">
+              <label style="display: inline-block;">
+                <input type="checkbox" id="bootBlockbox" value="1" onclick="displayGearStatInput(this.id,'bootBlockStat',boot,'Block')"><span>Block</span>
+              </label>
+              <input id="bootBlockStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Block')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsMinbox" value="1" onclick="displayGearStatInput(this.id,'bootsMinStat',boots,'MinDmg')"><span>Min</span>
+                <input type="checkbox" id="bootMinbox" value="1" onclick="displayGearStatInput(this.id,'bootMinStat',boot,'MinDmg')"><span>Min</span>
               </label>
-              <input id="bootsMinStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MinDmg')">
+              <input id="bootMinStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'MinDmg')">
             </div>
 
             
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsMaxbox" value="1" onclick="displayGearStatInput(this.id,'bootsMaxStat',boots,'MaxDmg')"><span>Max</span>
+                <input type="checkbox" id="bootMaxbox" value="1" onclick="displayGearStatInput(this.id,'bootMaxStat',boot,'MaxDmg')"><span>Max</span>
               </label>
-              <input id="bootsMaxStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MaxDmg')">
+              <input id="bootMaxStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'MaxDmg')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsCritbox" value="1" onclick="displayGearStatInput(this.id,'bootsCritStat',boots,'Crit')"><span>Critical</span>
+                <input type="checkbox" id="bootCritbox" value="1" onclick="displayGearStatInput(this.id,'bootCritStat',boot,'Crit')"><span>Critical</span>
               </label>
-              <input id="bootsCritStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Crit')">
+              <input id="bootCritStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Crit')">
             </div>
 
   
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsHastebox" value="1" onclick="displayGearStatInput(this.id,'bootsHasteStat',boots,'Haste')"><span>Haste</span>
+                <input type="checkbox" id="bootHastebox" value="1" onclick="displayGearStatInput(this.id,'bootHasteStat',boot,'Haste')"><span>Haste</span>
               </label>
-              <input id="bootsHasteStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'Haste')">
+              <input id="bootHasteStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'Haste')">
             </div>
 
           
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'bootsMoveSpdStat',boots,'MoveSpd')"><span>Move Speed</span>
+                <input type="checkbox" id="bootMoveSpdbox" value="1" onclick="displayGearStatInput(this.id,'bootMoveSpdStat',boot,'MoveSpd')"><span>Move Speed</span>
               </label>
-              <input id="bootsMoveSpdStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'MoveSpd')">
+              <input id="bootMoveSpdStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'MoveSpd')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsItemFindbox" value="1" onclick="displayGearStatInput(this.id,'bootsItemFindStat',boots,'ItemFind')"><span>ItemFind</span>
+                <input type="checkbox" id="bootItemFindbox" value="1" onclick="displayGearStatInput(this.id,'bootItemFindStat',boot,'ItemFind')"><span>ItemFind</span>
               </label>
-              <input id="bootsItemFindStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'ItemFind')">
+              <input id="bootItemFindStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'ItemFind')">
             </div>
 
             <div id="ck-button">
               <label style="display: inline-block;">
-                <input type="checkbox" id="bootsBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'bootsBagSlotStat',boots,'BagSlot')"><span>Bag Slots</span>
+                <input type="checkbox" id="bootBagSlotbox" value="1" onclick="displayGearStatInput(this.id,'bootBagSlotStat',boot,'BagSlot')"><span>Bag Slots</span>
               </label>
-              <input id="bootsBagSlotStat" type="number" style="display:none" onchange="updateItem(boots,this.id,'BagSlot')">
+              <input id="bootBagSlotStat" type="number" style="display:none" onchange="updateItem(boot,this.id,'BagSlot')">
             </div>
 
 
@@ -2330,32 +2591,38 @@ span.price {
 
     </div>
     <div class="col-25">
-      <div class="container">
+      <div class="container unavailable">
         <h4>Adjustments <span class="price" style="color:grey"><i class="fa fa-plus"></i></span></h4>
         <div class="row">
+            <div id="ck-button">
+                <label style="display: block;">
+                  <input type="checkbox" id="buffreinbox" value="1" onclick="displayGearStatInput(this.id,'buffreinStat',buff,'Def')"><span>Reinforcement</span>
+                </label>
+                <input id="buffreinStat" type="number" style="display:none" onchange="updateItem(buff,this.id,'Def')">
+              </div>
           <div id="ck-button">
             <label style="display: block;">
-              <input type="checkbox" id="buffStrbox" value="1" onclick="displayGearStatInput(this.id,'buffStrStat',buff,'Block')"><span>Bulwark</span>
+              <input type="checkbox" id="buffbulbox" value="1" onclick="displayGearStatInput(this.id,'buffbulStat',buff,'Block')"><span>Bulwark</span>
             </label>
-            <input id="buffStrStat" type="number" style="display:none" onchange="updateGear(character,this.id,'Block')">
+            <input id="buffbulStat" type="number" style="display:none" onchange="updateItem(buff,this.id,'Block')">
           </div>
           <div id="ck-button">
             <label style="display: block;">
               <input type="checkbox" id="buffDmgbox" value="1" onclick="displayGearStatInput(this.id,'buffDmgStat',buff,'MinDmg')"><span>Warcry</span>
             </label>
-            <input id="buffDmgStat" type="number" style="display:none" onchange="updateGear(character,this.id,'MinDmg')">
+            <input id="buffDmgStat" type="number" style="display:none" onchange="updateItem(buff,this.id,'MinDmg')">
           </div>
           <div id="ck-button">
             <label style="display: block;">
-              <input type="checkbox" id="buffStrbox" value="1" onclick="displayGearStatInput(this.id,'buffStrStat',buff,'Def')"><span>Howl</span>
+              <input type="checkbox" id="buffStrbox" value="1" onclick="displayGearStatInput(this.id,'buffStrStat',buff,'Haste')"><span>Howl</span>
             </label>
-            <input id="buffStrStat" type="number" style="display:none" onchange="updateGear(character,this.id,'Def')">
+            <input id="buffStrStat" type="number" style="display:none" onchange="updateItem(buff,this.id,'Haste')">
           </div>
           <div id="ck-button">
             <label style="display: block;">
               <input type="checkbox" id="buffStrbox" value="1" onclick="displayGearStatInput(this.id,'buffStrStat',buff,'Def')"><span>Courage</span>
             </label>
-            <input id="buffStrStat" type="number" style="display:none" onchange="updateGear(character,this.id,'Def')">
+            <input id="buffStrStat" type="number" style="display:none" onchange="updateItem(buff,this.id,'Def')">
           </div>
         </div>
 
